@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="common" template="/WEB-INF/views/layout/layout.jsp">
+        <put-attribute name="title" value="index" />
+        <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/layout/sidebar.jsp" />
+        <put-attribute name="topbar" value="/WEB-INF/views/layout/topbar.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+        <put-attribute name="footerbutton" value="/WEB-INF/views/layout/footerbutton.jsp" />
+    </definition>
+
+    <definition name="home" extends="common">
+        <put-attribute name="title" value="home" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
+    </definition>
+
+    <definition name="userList" extends="common">
+        <put-attribute name="title" value="List User" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userList.jsp" />
+    </definition>
+
+    <definition name="viewUpdateUser" extends="common">
+        <put-attribute name="title" value="Update User" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/viewUpdate.jsp" />
+    </definition>
+
+    <definition name="viewAddUser" extends="common">
+        <put-attribute name="title" value="Add User" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/viewAdd.jsp" />
+    </definition>
+</tiles-definitions>
