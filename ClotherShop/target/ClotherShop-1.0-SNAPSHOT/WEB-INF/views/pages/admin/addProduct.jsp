@@ -125,14 +125,36 @@
         box-shadow: 2px 5px 15px 5px #1565c0;
     }
     
-    .new{
-        position: absolute;
+    #new-color, #new-kind, #new-size {
         font-size: 12px;
-        right: 0px;
         color: #0d59af;
+        margin-right: 20px;
+    }
+    
+    .addnewproduct {
+        display: none;
+        position: fixed;
+        top: 100px;
+        background: white;
+        height: auto;
+        margin-left: 30px;
+    }
+
+    .alert{
+        display: none;
+        position: fixed;
+        z-index: 1;
+        text-align: center;
+        top: 60px;
+        font-weight:bold;
+        font-size: larger;
+        font-variant: small-caps;
     }
 </style>
 <hr>
+<div class="alert col-lg-12">
+    <strong id="notify"></strong>
+</div>
 <div class="container bootstrap snippet col-sm-12">
     <div class="row">
         <div class="col-sm-3" style="float: left; height: 350px">
@@ -144,9 +166,13 @@
         </div>
         <!--/col-3-->
         <div class="col-sm-9">
-            
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
+                    <div style="float: right; margin-right: 10%;">
+                        <button type="button" class="btn btn-lg btn-primary" id="creat-new-product">
+                            Creat new product
+                        </button>
+                    </div>
                     <form class="form" method="post" id="product-main">
                         <div class="title-info-product">
                             <h4>Information main product</h4>
@@ -157,7 +183,7 @@
                                     <label for="code">
                                         <h4>Code</h4>
                                     </label>
-                                    <input type="text" class="form-control" id="code" title="enter your code."
+                                    <input type="text" class="form-control" id="code" placeholder="enter code."
                                            style="height: 30px; font-size: 17px;">
                                 </div>
                             </div>
@@ -168,7 +194,7 @@
                                         <h4>Name</h4>
                                     </label>
                                     <input type="text" class="form-control" id="name"
-                                           title="enter your name." style="height: 30px; font-size: 17px;">
+                                           placeholder="enter name." style="height: 30px; font-size: 17px;">
                                 </div>
                             </div>
                             
@@ -178,7 +204,7 @@
                                         <h4>Price</h4>
                                     </label>
                                     <input type="number" class="form-control" id="price"
-                                           title="enter your price."
+                                           placeholder="enter price."
                                            style="height: 30px; font-size: 17px;">
                                 </div>
                             </div>
@@ -188,8 +214,7 @@
                                     <label for="describe">
                                         <h4>Describe</h4>
                                     </label>
-                                    <textarea type="text" class="form-control" id="describe"
-                                              title="enter your describe."
+                                    <textarea class="form-control" id="describe"
                                               style="height: 100px; font-size: 17px;">
                                     </textarea>
                                 </div>
@@ -205,55 +230,51 @@
                         </div>
                     </form>
                     
-                    
-                    
-                    
-                    
                     <form class="product-detail-form" style="display: none">
                         <%--           phần chi tiết của sản phẩm             --%>
                         <div class="product-detail col-xs-12">
                             <div class="col-xs-4" style="margin-top: 30px">
-                                <select name="color">
+                                <select name="color" id="color">
                                     <option value="">-- Select Color --</option>
                                     <c:forEach items="${colorList}" var="colorLists">
                                         <option value="${colorLists.getIdColor()}">${colorLists.getName()}</option>
                                     </c:forEach>
                                 </select>
-                                <p class="new" id="new-color"> New Color </p>
+                                <a class="new" id="new-color"> New Color </a>
                             </div>
                             <div class="col-xs-4" style="margin-top: 30px">
-                                <select name="size">
+                                <select name="size" id="size">
                                     <option value="">-- Select Size --</option>
                                     <c:forEach items="${sizeList}" var="sizeLists">
                                         <option value="${sizeLists.getIdSize()}">${sizeLists.getNumber()}</option>
                                     </c:forEach>
                                 </select>
-                                <p class="new" id="new-size"> New Size </p>
+                                <a class="new" id="new-size"> New Size </a>
                             </div>
                             <div class="col-xs-4" style="margin-top: 30px">
-                                <select name="kind">
+                                <select name="kind" id="kind">
                                     <option value="">-- Select Kind --</option>
                                     <c:forEach items="${kindList}" var="kindLists">
                                         <option value="${kindLists.getIdKind()}">${kindLists.getName()}</option>
                                     </c:forEach>
                                 </select>
-                                <p class="new" id="new-kind"> New Kind </p>
+                                <a class="new" id="new-kind"> New Kind </a>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-4">
-                                    <input type="number" class="form-control" id="quality"
-                                           title="enter quality." placeholder="Quality of product"
+                                    <input type="number" class="form-control displayed" id="quality"
+                                            placeholder="Quality of product"
                                            style="height: 30px; font-size: 17px; margin-top: 30px">
                                 </div>
                             </div>
                             <div class="col-xs-4" style="margin-top: 30px">
-                                <input type="file" name="image" style="height: 30px; font-size: 17px; width: 100%"
-                                       class="text-center center-block file-upload">
+                                <input type="file" name="image" style="height: 30px; font-size: 17px; width: 100%" id="file"
+                                       class="text-center center-block file-upload displayed">
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-4">
                                     <br>
-                                    <button class="btn btn-lg btn-success" type="button"><i
+                                    <button id="save-product" class="btn btn-lg btn-success displayed" type="button"><i
                                             class="glyphicon glyphicon-ok-sign"></i> Save
                                     </button>
                                 </div>
@@ -265,11 +286,40 @@
             <!--/tab-pane-->
         </div>
         <!--/tab-content-->
-    
     </div>
     <!--/col-9-->
 </div>
 <!--/row-->
+<%--           phần thêm dữ liệu mới         --%>
+<div class="addnewproduct col-sm-10">
+    <div class="col-xs-3 col-xs-offset-3" style="height: 100px; margin: 0 auto; padding: 20px; position: absolute;
+        left: 50%;
+        top: 50%;
+        padding: 20px;
+        transform: translate(-50%, -50%);">
+        <p id="title" style="font-size: 20px; color: #0d59af; text-align: center"></p>
+        <input id="newItem" type="text" name="" style="height: 30px; font-size: 17px; width: 100%"
+               class="text-center center-block ">
+    </div>
+    <div style="margin-top: 40px">
+        <div class="form-group" style="= width: 300px; margin-top: 150px; margin-left: 410px;">
+            <div class="col-xs-2">
+                <br>
+                <button class="btn btn-lg btn-danger" id="close" type="button"><i
+                        class="glyphicon glyphicon-eye-close"></i> Closed
+                </button>
+            </div>
+        </div>
+        <div class="form-group" style="float: left; margin-left: 30px">
+            <div class="col-xs-2">
+                <br>
+                <button class="btn btn-lg btn-success"id="save" type="button"><i
+                        class="glyphicon glyphicon-ok-sign"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         var readURL = function (input) {
@@ -287,26 +337,5 @@
         $(".file-upload").on('change', function () {
             readURL(this);
         });
-
-        // sử lý trang thêm sản phẩm
-        $("#check-button").click(function () {
-            $.ajax({
-                url: "saveNewProduct",
-                type: "POST",
-                data: {},
-                success: function (value) {
-                    if (value != "true") {
-                        // return thông báo lỗi.
-                    } else {
-                        $(".product-detail-form").show(2000);
-                        $("#product-main button").hide(function () {
-                            $("#product-main input, textarea").prop("readOnly", true);
-                            $("#product-main").fadeTo(2000, 0.3, "swing");
-                        });
-                    }
-                }
-            })
-        })
-        
-    });
+    });//end
 </script>
