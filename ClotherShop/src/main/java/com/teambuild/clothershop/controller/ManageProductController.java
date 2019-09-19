@@ -265,6 +265,6 @@ public class ManageProductController {
     @GetMapping("admin-details-product")
     public String getProductById(@RequestParam String id) {
         manageProductServiceImpl.selectProductById(Integer.parseInt(id));
-        return "";
+        return ""; // trả về trang chi tiết sản phẩm
     }
 }

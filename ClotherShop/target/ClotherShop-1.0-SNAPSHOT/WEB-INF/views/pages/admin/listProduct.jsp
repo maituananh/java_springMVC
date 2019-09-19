@@ -1,4 +1,3 @@
-<%@ page import="com.teambuild.clothershop.model.ProductDetails, java.util.Set" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="content">
     <div class="animated fadeIn">
@@ -57,7 +56,7 @@
                                                 <td class="sorting_1">${getAllProducts.getCodesProduct()}</td>
                                                 <td>${getAllProducts.getNameProduct()}</td>
                                                 <td>${getAllProducts.getProducer().getNameProducer()}</td>
-                                                <td>${getAllProducts.getDescribeProduct().substring(10)}</td>
+                                                <td>${getAllProducts.getDescribeProduct().substring(10)}.....</td>
                                                 <td>$ ${getAllProducts.getPrice()}00</td>
                                                 <td><a href="admin-details-product/id=${getAllProducts.getIdProduct()}"><i class="fa fa-info" style="color: #0a44a1; background: white"></i></a></td>
                                             </tr>

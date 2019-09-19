@@ -1,5 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- cart -->
+<script defer src="<c:url value="/resources/js/jquery.flexslider.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/flexslider.css"/>" type="text/css" media="screen"/>
+<script src="<c:url value="/resources/js/imagezoom.js"/>"></script>
+<script>
+    // Can also be used with $(document).ready()
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+</script>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -27,64 +40,36 @@
                     <div clas="single-top">
                         <div class="single-left">
                             <div class="flexslider">
-                                
                                 <div class="flex-viewport" style="overflow: hidden; position: relative;">
                                     <ul class="slides"
                                         style="width: 1000%; transition-duration: 0s; transform: translate3d(-386px, 0px, 0px);">
-                                        <li data-thumb="<c:url value="/resources/images/si2.jpg"/>" class="clone"
-                                            aria-hidden="true"
-                                            style="width: 386px; float: left; display: block;">
-                                            <div class="thumb-image"><img
-                                                    src="<c:url value="/resources/images/si2.jpg"/>"
-                                                    data-imagezoom="true"
-                                                    class="img-responsive" draggable="false">
-                                            </div>
-                                        </li>
-                                        <li data-thumb="<c:url value="/resources/images/si.jpg"/>"
-                                            style="width: 386px; float: left; display: block;"
-                                            class="flex-active-slide">
-                                            <div class="thumb-image"><img
-                                                    src="<c:url value="/resources/images/si.jpg"/>"
-                                                    data-imagezoom="true"
-                                                    class="img-responsive" draggable="false">
-                                            </div>
-                                        </li>
-                                        <li data-thumb="<c:url value="/resources/images/si1.jpg"/>"
-                                            style="width: 386px; float: left; display: block;" class="">
-                                            <div class="thumb-image"><img
-                                                    src="<c:url value="/resources/images/si1.jpg"/>"
-                                                    data-imagezoom="true"
-                                                    class="img-responsive" draggable="false">
-                                            </div>
-                                        </li>
-                                        <li data-thumb="<c:url value="/resources/images/si2.jpg"/>"
-                                            style="width: 386px; float: left; display: block;" class="">
-                                            <div class="thumb-image"><img
-                                                    src="<c:url value="/resources/images/si2.jpg"/>"
-                                                    data-imagezoom="true"
-                                                    class="img-responsive" draggable="false">
-                                            </div>
-                                        </li>
-                                        <li data-thumb="<c:url value="/resources/images/si.jpg"/>"
-                                            style="width: 386px; float: left; display: block;" class="clone"
-                                            aria-hidden="true">
-                                            <div class="thumb-image"><img
-                                                    src="<c:url value="/resources/images/si.jpg"/>"
-                                                    data-imagezoom="true"
-                                                    class="img-responsive" draggable="false">
-                                            </div>
-                                        </li>
+                                        <c:forEach items="${productDetail}" var="productDetails">
+<%--                                            <c:if test="${productDetails != null}">--%>
+<%--                                                <li data-thumb="<c:url value="/resources/images/${productDetails.getImage().getPath()}"/>"--%>
+<%--                                                    class="clone"--%>
+<%--                                                    aria-hidden="true"--%>
+<%--                                                    style="width: 386px; float: left; display: block;">--%>
+<%--                                                    <div class="thumb-image"><img--%>
+<%--                                                            src="<c:url value="/resources/images/${productDetails.getImage().getPath()}"/>"--%>
+<%--                                                            alt="if=1"--%>
+<%--                                                            data-imagezoom="true"--%>
+<%--                                                            class="img-responsive" draggable="false">--%>
+<%--                                                    </div>--%>
+<%--                                                </li>--%>
+<%--                                            </c:if>--%>
+                                            <li data-thumb="<c:url value="/resources/images/${productDetails.getImage().getPath()}"/>"
+                                                style="width: 386px; float: left; display: block;"
+                                                class="flex-active-slide">
+                                                <div class="thumb-image"><img
+                                                        src="<c:url value="/resources/images/${productDetails.getImage().getPath()}"/>"
+                                                        alt="if!=1"
+                                                        data-imagezoom="true"
+                                                        class="img-responsive" draggable="false">
+                                                </div>
+                                            </li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
-                                
-                                <ol class="flex-control-nav flex-control-thumbs">
-                                    <li><img src="<c:url value="/resources/images/si.jpg"/>" class="flex-active"
-                                             draggable="false"></li>
-                                    <li><img src="<c:url value="/resources/images/si1.jpg"/>" draggable="false"
-                                             class=""></li>
-                                    <li><img src="<c:url value="/resources/images/si2.jpg"/>" draggable="false"
-                                             class=""></li>
-                                </ol>
                                 <ul class="flex-direction-nav">
                                     <li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li>
                                     <li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li>
