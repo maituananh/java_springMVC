@@ -131,7 +131,7 @@
         margin-right: 20px;
     }
     
-    .addnewproduct {
+    .addnewproduct, .addNewProducer {
         display: none;
         position: fixed;
         top: 100px;
@@ -139,14 +139,14 @@
         height: auto;
         margin-left: 30px;
     }
-
-    .alert{
+    
+    .alert {
         display: none;
         position: fixed;
         z-index: 1;
         text-align: center;
         top: 60px;
-        font-weight:bold;
+        font-weight: bold;
         font-size: larger;
         font-variant: small-caps;
     }
@@ -211,16 +211,30 @@
                             
                             <div class="form-group">
                                 <div class="col-xs-6">
+                                    <label for="Producer">
+                                        <h4>Producer</h4>
+                                    </label>
+                                    <select name="Producer" id="Producer">
+                                        <option value="">-- Select Producer --</option>
+                                        <c:forEach items="${producerList}" var="producerLists">
+                                            <option value="${producerLists.getIdProducer()}">${producerLists.getNameProducer()}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <a class="new" id="new-producer"> New Producer </a>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-xs-6">
                                     <label for="describe">
                                         <h4>Describe</h4>
                                     </label>
                                     <textarea class="form-control" id="describe"
-                                              style="height: 100px; font-size: 17px;">
-                                    </textarea>
+                                              style="height: 100px; font-size: 17px;"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-xs-6">
+                                <div class="col-xs-6"  style="padding-top: 28px">
                                     <br>
                                     <button class="btn btn-lg btn-success" id="check-button" type="button"><i
                                             class="glyphicon glyphicon-ok-sign"></i> Check
@@ -237,7 +251,7 @@
                                 <select name="color" id="color">
                                     <option value="">-- Select Color --</option>
                                     <c:forEach items="${colorList}" var="colorLists">
-                                        <option value="${colorLists.getIdColor()}">${colorLists.getName()}</option>
+                                        <option value="${colorLists.getIdColor()}">${colorLists.getNameColor()}</option>
                                     </c:forEach>
                                 </select>
                                 <a class="new" id="new-color"> New Color </a>
@@ -255,7 +269,7 @@
                                 <select name="kind" id="kind">
                                     <option value="">-- Select Kind --</option>
                                     <c:forEach items="${kindList}" var="kindLists">
-                                        <option value="${kindLists.getIdKind()}">${kindLists.getName()}</option>
+                                        <option value="${kindLists.getIdKind()}">${kindLists.getNameKind()}</option>
                                     </c:forEach>
                                 </select>
                                 <a class="new" id="new-kind"> New Kind </a>
@@ -263,19 +277,29 @@
                             <div class="form-group">
                                 <div class="col-xs-4">
                                     <input type="number" class="form-control displayed" id="quality"
-                                            placeholder="Quality of product"
+                                           placeholder="Quality of product"
                                            style="height: 30px; font-size: 17px; margin-top: 30px">
                                 </div>
                             </div>
                             <div class="col-xs-4" style="margin-top: 30px">
-                                <input type="file" name="image" style="height: 30px; font-size: 17px; width: 100%" id="file"
+                                <input type="file" name="image" style="height: 30px; font-size: 17px; width: 100%"
+                                       id="file"
                                        class="text-center center-block file-upload displayed">
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-4">
                                     <br>
                                     <button id="save-product" class="btn btn-lg btn-success displayed" type="button"><i
-                                            class="glyphicon glyphicon-ok-sign"></i> Save
+                                            class="glyphicon glyphicon-ok-sign"></i> Save to container
+                                    </button>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <br>
+                                    <button id="save-product-data" class="btn btn-lg btn-success displayed" style="display: none" type="button"><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save all Product
                                     </button>
                                 </div>
                             </div>
@@ -290,6 +314,41 @@
     <!--/col-9-->
 </div>
 <!--/row-->
+<div class="addNewProducer col-sm-10" style="display: none">
+    <div class="col-xs-3 col-xs-offset-3" style="height: 100px; margin: 0 auto; padding: 20px; position: absolute;
+        left: 50%;
+        top: 20%;
+        padding: 20px;
+        transform: translate(-50%, -50%);">
+        <p id="title-producer" style="font-size: 20px; color: #0d59af; text-align: center"></p>
+        <input id="newItem-producer" type="text" name="" style="height: 30px; font-size: 17px; width: 100%"
+               placeholder="ADD NEW NAME"
+               class="text-center center-block ">
+        <input id="newItem-producer-address" type="text" name="" style="height: 30px; font-size: 17px; width: 100%"
+               placeholder="ADD NEW ADDRESS"
+               class="text-center center-block ">
+    </div>
+    <div style="margin-top: 50px">
+        <div class="form-group" style="= width: 300px; margin-top: 100px; margin-left: 410px;">
+            <div class="col-xs-2">
+                <br>
+                <button class="btn btn-lg btn-danger" id="close-producer" type="button"><i
+                        class="glyphicon glyphicon-eye-close"></i> Closed
+                </button>
+            </div>
+        </div>
+        <div class="form-group" style="float: left; margin-left: 30px">
+            <div class="col-xs-2">
+                <br>
+                <button class="btn btn-lg btn-success" id="save-producer" type="button"><i
+                        class="glyphicon glyphicon-ok-sign"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <%--           phần thêm dữ liệu mới         --%>
 <div class="addnewproduct col-sm-10">
     <div class="col-xs-3 col-xs-offset-3" style="height: 100px; margin: 0 auto; padding: 20px; position: absolute;
@@ -313,7 +372,7 @@
         <div class="form-group" style="float: left; margin-left: 30px">
             <div class="col-xs-2">
                 <br>
-                <button class="btn btn-lg btn-success"id="save" type="button"><i
+                <button class="btn btn-lg btn-success" id="save" type="button"><i
                         class="glyphicon glyphicon-ok-sign"></i> Save
                 </button>
             </div>

@@ -9,14 +9,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduct;
     private String codesProduct;
-    private String name;
-    private String describe;
+    private String nameProduct;
+    private String describeProduct;
     private Double price;
 
+    // nhà sản xuất CHƯA LÀM
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProducer_Product")
     private Producer producer;
 
+    // người thêm sp CHƯA LÀM
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser_Product")
     private User user;
@@ -24,9 +26,6 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduct_DT")
     private Set<ProductDetails> productDetails;
-
-    private String date_created;
-    private String date_updated;
 
     public Set<ProductDetails> getProductDetails() {
         return productDetails;
@@ -60,20 +59,20 @@ public class Product {
         this.codesProduct = codesProduct;
     }
 
-    public String getName() {
-        return name;
+    public String getNameProduct() {
+        return nameProduct;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescribeProduct() {
+        return describeProduct;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescribeProduct(String describeProduct) {
+        this.describeProduct = describeProduct;
     }
 
     public Producer getProducer() {
@@ -90,21 +89,5 @@ public class Product {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getDate_created() {
-        return date_created;
-    }
-
-    public void setDate_created(String date_created) {
-        this.date_created = date_created;
-    }
-
-    public String getDate_updated() {
-        return date_updated;
-    }
-
-    public void setDate_updated(String date_updated) {
-        this.date_updated = date_updated;
     }
 }

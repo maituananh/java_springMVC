@@ -10,6 +10,18 @@ public class Size {
     private int idSize;
     private int number;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idSize_DT")
+    Set<ProductDetails> productDetailsSet;
+
+    public Set<ProductDetails> getProductDetailsSet() {
+        return productDetailsSet;
+    }
+
+    public void setProductDetailsSet(Set<ProductDetails> productDetailsSet) {
+        this.productDetailsSet = productDetailsSet;
+    }
+
     public int getIdSize() {
         return idSize;
     }

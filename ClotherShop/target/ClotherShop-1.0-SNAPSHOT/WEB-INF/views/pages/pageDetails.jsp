@@ -92,10 +92,10 @@
                             </div>
                         </div>
                         <div class="single-right simpleCart_shelfItem">
-                            <h4>${infoProduct.getName()}</h4>
+                            <h4>${infoProduct.getNameProduct()}</h4>
                             <p class="price item_price">$ ${infoProduct.getPrice()}00</p>
                             <div class="description">
-                                <p><span>Quick Overview : </span>${infoProduct.getDescribe()}</p>
+                                <p><span>Quick Overview : </span>${infoProduct.getDescribeProduct()}</p>
                             </div>
                             <div class="women0" style="margin-top: 30px;">
                                 <table>
@@ -108,8 +108,8 @@
                                     <c:forEach items="${productDetail}" var="productDetails">
                                         <tr>
                                             <td>${productDetails.getSize().getNumber()}</td>
-                                            <td>${productDetails.getColor().getName()}</td>
-                                            <td>${productDetails.getQuanlity()}</td>
+                                            <td>${productDetails.getColor().getNameColor()}</td>
+                                            <td>${productDetails.getQuality()}</td>
                                             <td>
                                                 <a href="addcart?idProductDetails=${productDetails.getIdProductDetails()}"><i
                                                         style="color: green; text-decoration: none; font-size: larger"

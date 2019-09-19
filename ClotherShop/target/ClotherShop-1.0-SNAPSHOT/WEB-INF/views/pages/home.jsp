@@ -74,7 +74,7 @@
 							</div>
 							
 							<div class="women">
-								<h6><a href="productDetails?id=${listProducts.getIdProduct()}">${listProducts.getName()}</a></h6>
+								<h6><a href="productDetails?id=${listProducts.getIdProduct()}">${listProducts.getNameProduct()}</a></h6>
 								<p><em class="item_price">$ ${listProducts.getPrice()}00</em></p>
 								<a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
 							</div>

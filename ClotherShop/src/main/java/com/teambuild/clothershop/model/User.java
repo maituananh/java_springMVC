@@ -28,11 +28,11 @@ public class User {
     @JoinColumn(name = "idGender_User")
     private Gender gender;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // chưa sử lý
     @JoinColumn(name = "idVerificationCodes_User")
     private Verification verification;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // chưa sử lý
     @JoinColumn(name = "idUser_Product")
     private Set<Product> product = new HashSet<>();
 

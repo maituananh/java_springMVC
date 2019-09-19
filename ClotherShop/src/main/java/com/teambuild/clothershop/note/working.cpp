@@ -4,3 +4,5 @@
 11/9 - 10h pm: handling page add product;
 dự kiến 12/9: làm phần thêm mới của color, size, kind + thêm khi click vào check thì đồng thời cho ô textarea nhỏ lại
               = 30px;
+15/9 11h pm: đã làm được phần thêm sản phẩm nhưng cần xem lại để hiểu rõ hơn;
+18/9 : CẦN XEM LẠI VALIDATE KÝ TỰ ĐẶC BIỆT BỊ SAI PHẦN THÊM NHÀ SẢN XUẤT MỚI

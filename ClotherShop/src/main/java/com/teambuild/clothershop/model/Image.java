@@ -1,6 +1,7 @@
 package com.teambuild.clothershop.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "image")
 public class Image {
@@ -8,6 +9,10 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idImage;
     private String path;
+
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "idImage_DT")
+//    private ProductDetails productDetails;
 
     public int getIdImage() {
         return idImage;

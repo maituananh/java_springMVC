@@ -1,3 +1,4 @@
+<%@ page import="com.teambuild.clothershop.model.ProductDetails, java.util.Set" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="content">
     <div class="animated fadeIn">
@@ -35,6 +36,16 @@
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table"
                                                 rowspan="1" colspan="1"
+                                                aria-label="Size: activate to sort column ascending"
+                                                style="width: 138px;">Size
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Price: activate to sort column ascending"
+                                                style="width: 138px;">Price
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table"
+                                                rowspan="1" colspan="1"
                                                 aria-label="Salary: activate to sort column ascending"
                                                 style="width: 110px;">Detail
                                             </th>
@@ -44,9 +55,11 @@
                                         <c:forEach items="${getAllProduct}" var="getAllProducts">
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">${getAllProducts.getCodesProduct()}</td>
-                                                <td>${getAllProducts.getName()}</td>
-                                                <td>${getAllProducts.getProducer().getName()}</td>
-                                                <td>detail</td>
+                                                <td>${getAllProducts.getNameProduct()}</td>
+                                                <td>${getAllProducts.getProducer().getNameProducer()}</td>
+                                                <td>${getAllProducts.getDescribeProduct().substring(10)}</td>
+                                                <td>$ ${getAllProducts.getPrice()}00</td>
+                                                <td><a href="admin-details-product/id=${getAllProducts.getIdProduct()}"><i class="fa fa-info" style="color: #0a44a1; background: white"></i></a></td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

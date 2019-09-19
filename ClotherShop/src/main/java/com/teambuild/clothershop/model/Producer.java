@@ -8,12 +8,12 @@ public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProducer;
-    private String name;
+    private String nameProducer;
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idProducer_Product")
-    private Set<Producer> producerSet;
+    private Set<Product> productSet;
 
     public int getIdProducer() {
         return idProducer;
@@ -23,12 +23,12 @@ public class Producer {
         this.idProducer = idProducer;
     }
 
-    public String getName() {
-        return name;
+    public String getNameProducer() {
+        return nameProducer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameProducer(String nameProducer) {
+        this.nameProducer = nameProducer;
     }
 
     public String getAddress() {

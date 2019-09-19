@@ -1,10 +1,7 @@
 package com.teambuild.clothershop.daoimpl;
 
 import com.teambuild.clothershop.dao.ManageProductDao;
-import com.teambuild.clothershop.model.Kind;
-import com.teambuild.clothershop.model.Product;
-import com.teambuild.clothershop.model.Size;
-import javafx.scene.paint.Color;
+import com.teambuild.clothershop.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,12 @@ public class ManageProductDaoImpl implements ManageProductDao {
     }
 
     @Override
+    public void insertProduct(Product product) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
+    }
+
+    @Override
     public List getAllKind() {
         String sql = "FROM kind";
         Session session = sessionFactory.getCurrentSession();
@@ -55,6 +58,37 @@ public class ManageProductDaoImpl implements ManageProductDao {
         String sql = "FROM size";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(sql).getResultList();
+    }
+
+    @Override
+    public List getAllProducer() {
+        String sql = "FROM producer";
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery(sql).getResultList();
+    }
+
+    @Override
+    public void addKind(Kind kind) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(kind);
+    }
+
+    @Override
+    public void addColor(Color color) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(color);
+    }
+
+    @Override
+    public void addSize(Size size) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(size);
+    }
+
+    @Override
+    public void addProducer(Producer producer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(producer);
     }
 
 }
