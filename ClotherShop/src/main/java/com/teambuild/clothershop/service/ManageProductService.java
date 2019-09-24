@@ -18,4 +18,6 @@ public interface ManageProductService {
     void addColor(Color color);
     void addSize(Size size);
     void addProducer(Producer producer);
+
+    List recentProducts();
 }

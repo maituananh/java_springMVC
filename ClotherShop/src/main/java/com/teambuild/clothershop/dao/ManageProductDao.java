@@ -19,4 +19,6 @@ public interface ManageProductDao {
     void addColor(Color color);
     void addSize(Size size);
     void addProducer(Producer producer);
+
+    List recentProducts();
 }

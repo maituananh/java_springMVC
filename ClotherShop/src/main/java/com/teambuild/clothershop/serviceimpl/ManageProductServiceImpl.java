@@ -68,4 +68,9 @@ public class ManageProductServiceImpl implements ManageProductService {
     public void addProducer(Producer producer) {
         manageProductDaoImpl.addProducer(producer);
     }
+
+    @Override
+    public List recentProducts() {
+        return null;
+    }
 }

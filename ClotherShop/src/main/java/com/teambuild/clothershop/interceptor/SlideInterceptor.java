@@ -17,8 +17,13 @@ public class SlideInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        List<Slide> slideList = slideInterceptorServiceImpl.loadMenu();
-        request.setAttribute("slideList", slideList);
+        String url = request.getServletPath();
+        switch (url) {
+            case "/home":
+                List<Slide> slideList = slideInterceptorServiceImpl.loadMenu();
+                request.setAttribute("slideList", slideList);
+                break;
+        }
         return true;
     }
 

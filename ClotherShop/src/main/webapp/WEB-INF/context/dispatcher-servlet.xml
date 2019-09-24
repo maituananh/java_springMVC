@@ -55,5 +55,5 @@
         </property>
     </bean>
 
-    <import resource="classpath:applicationContext.xml"/>
+    <import resource="classpath*:applicationContext.xml"/>
 </beans>

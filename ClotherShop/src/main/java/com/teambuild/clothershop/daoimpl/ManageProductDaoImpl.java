@@ -2,6 +2,7 @@ package com.teambuild.clothershop.daoimpl;
 
 import com.teambuild.clothershop.dao.ManageProductDao;
 import com.teambuild.clothershop.model.*;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +90,16 @@ public class ManageProductDaoImpl implements ManageProductDao {
     public void addProducer(Producer producer) {
         Session session = sessionFactory.getCurrentSession();
         session.save(producer);
+    }
+
+    private Session getCurrentSession(){
+        return sessionFactory.getCurrentSession();
+    }
+
+    @Override
+    public List recentProducts() {
+        Criteria criteria = getCurrentSession().createCriteria(Product.class);
+        return null;
     }
 
 }

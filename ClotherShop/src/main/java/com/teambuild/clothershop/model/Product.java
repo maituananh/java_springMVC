@@ -12,6 +12,10 @@ public class Product {
     private String nameProduct;
     private String describeProduct;
     private Double price;
+    private String updated_date;
+    private String updated_time;
+    private String created_date;
+    private String created_time;
 
     // nhà sản xuất CHƯA LÀM
     @OneToOne(fetch = FetchType.EAGER)
@@ -89,5 +93,37 @@ public class Product {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(String updated_date) {
+        this.updated_date = updated_date;
+    }
+
+    public String getUpdated_time() {
+        return updated_time;
+    }
+
+    public void setUpdated_time(String updated_time) {
+        this.updated_time = updated_time;
+    }
+
+    public String getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(String created_date) {
+        this.created_date = created_date;
+    }
+
+    public String getCreated_time() {
+        return created_time;
+    }
+
+    public void setCreated_time(String created_time) {
+        this.created_time = created_time;
     }
 }

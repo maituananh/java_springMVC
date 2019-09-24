@@ -84,6 +84,10 @@ public class ManageProductController {
                                 this.insertProduct.setNameProduct(name.trim());
                                 this.insertProduct.setPrice(Double.parseDouble(price.trim()));
                                 this.insertProduct.setDescribeProduct(describe);
+                                this.insertProduct.setCreated_time(java.time.LocalTime.now().toString());
+                                this.insertProduct.setCreated_date(java.time.LocalDate.now().toString());
+                                this.insertProduct.setUpdated_time("0");
+                                this.insertProduct.setUpdated_date("0");
                                 Producer insertProducer = new Producer();
                                 insertProducer.setIdProducer(Integer.parseInt(producer));
                                 this.insertProduct.setProducer(insertProducer);
@@ -262,6 +266,7 @@ public class ManageProductController {
     }
 
     // lấy tất cả thông tin sản phẩm theo id
+    // chưa làm
     @GetMapping("admin-details-product")
     public String getProductById(@RequestParam String id) {
         manageProductServiceImpl.selectProductById(Integer.parseInt(id));
