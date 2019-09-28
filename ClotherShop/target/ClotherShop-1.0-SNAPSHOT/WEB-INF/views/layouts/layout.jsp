@@ -77,11 +77,7 @@
             });
         });
     </script>
-    
-    <%--    js tự viết--%>
-    <script src="<c:url value="/resources/js/custom.js"/>"></script>
     <!--//End-rate-->
-    
     <link href="<c:url value="/resources/datapicker/air-datepicker/dist/css/datepicker.min.css"/>" rel="stylesheet" type="text/css">
     <script src="<c:url value="/resources/datapicker/air-datepicker/dist/js/datepicker.min.js"/>"></script>
     <!-- Include English language -->
@@ -113,6 +109,8 @@
     </div>
 </div>
 <!--copy-->
+<%--    js tự viết--%>
+<script src="<c:url value="/resources/js/custom.js"/>"></script>
 </body>
 </html>
 

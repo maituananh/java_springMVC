@@ -8,3 +8,6 @@ dự kiến 12/9: làm phần thêm mới của color, size, kind + thêm khi cl
 18/9 : CẦN XEM LẠI VALIDATE KÝ TỰ ĐẶC BIỆT BỊ SAI PHẦN THÊM NHÀ SẢN XUẤT MỚI
 19/9 : cần làm tiếp handle show product mới và bán chạy
 20/9 : xem lại phần sự kiện sản phẩm
+25/9 : đã làm xong phần sản phẩm mới ở trang chi tiết (code tù ở chổ lấy ra 1 tấm ảnh)
+26/9 : đã tối ưu được code tù show ra 1 tấm ảnh ở trang chi tiết phần sản phẩm mới
+

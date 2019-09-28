@@ -33,7 +33,7 @@ public class ManageProductController {
 
     @GetMapping("admin-getAllProduct")
     public String getAllProduct(ModelMap modelMap) {
-        List<Product> productList = manageProductServiceImpl.productList();
+        List<Product> productList = manageProductServiceImpl.getAllProduct();
         modelMap.addAttribute("getAllProduct", productList);
         return "listProduct";
     }
@@ -58,7 +58,7 @@ public class ManageProductController {
                                    @RequestParam String describe, @RequestParam String producer) {
         boolean check = false;
         if (CodesValidate.codesValidate(code)) {
-            List<Product> productList = manageProductServiceImpl.productList();
+            List<Product> productList = manageProductServiceImpl.getAllProduct();
             for (int i = 0; i < productList.size(); i++) {
                 if (productList.get(i).getCodesProduct().equals(code.trim().toUpperCase())) {
                     return "Code already exists";
@@ -263,13 +263,5 @@ public class ManageProductController {
             }
         }
         return "false";
-    }
-
-    // lấy tất cả thông tin sản phẩm theo id
-    // chưa làm
-    @GetMapping("admin-details-product")
-    public String getProductById(@RequestParam String id) {
-        manageProductServiceImpl.selectProductById(Integer.parseInt(id));
-        return ""; // trả về trang chi tiết sản phẩm
     }
 }

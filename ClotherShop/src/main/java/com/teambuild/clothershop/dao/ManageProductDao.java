@@ -5,7 +5,8 @@ import com.teambuild.clothershop.model.*;
 import java.util.List;
 
 public interface ManageProductDao {
-    List productList();
+    List productList(int position, int page);
+    List getAllProduct();
     Product selectProductById(int id);
     void insertProduct(Product product);
 
@@ -20,5 +21,5 @@ public interface ManageProductDao {
     void addSize(Size size);
     void addProducer(Producer producer);
 
-    List recentProducts();
+    List recentProducts(int start, int end);
 }

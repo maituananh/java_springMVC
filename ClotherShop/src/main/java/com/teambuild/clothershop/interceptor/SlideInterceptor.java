@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
+// cấu hình quét class trong xml
 public class SlideInterceptor implements HandlerInterceptor {
 
     @Autowired
@@ -19,7 +19,7 @@ public class SlideInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getServletPath();
         switch (url) {
-            case "/home":
+            case "/home": case "/home-page":
                 List<Slide> slideList = slideInterceptorServiceImpl.loadMenu();
                 request.setAttribute("slideList", slideList);
                 break;

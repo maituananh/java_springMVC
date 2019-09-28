@@ -15,7 +15,7 @@
         <div class="container">
             <div class="logo-nav">
                 <div class="logo-nav-left">
-                    <h1><a href="index.html">New Shop <span>Shop anywhere</span></a></h1>
+                    <h1><a href="home">New Shop <span>Shop anywhere</span></a></h1>
                 </div>
                 <div class="logo-nav-left1">
                     <nav class="navbar navbar-default">

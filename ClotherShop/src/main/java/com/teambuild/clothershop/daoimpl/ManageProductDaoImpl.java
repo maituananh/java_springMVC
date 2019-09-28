@@ -2,7 +2,6 @@ package com.teambuild.clothershop.daoimpl;
 
 import com.teambuild.clothershop.dao.ManageProductDao;
 import com.teambuild.clothershop.model.*;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,27 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 @Transactional
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ManageProductDaoImpl implements ManageProductDao {
-
     @Autowired
     SessionFactory sessionFactory;
 
     @Override
-    public List productList() {
+    public List productList(int position, int page) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM product");
+        query.setFirstResult(position);
+        query.setMaxResults(page);
+        return query.getResultList();
+    }
+
+    @Override
+    public List getAllProduct() {
         String sql = "FROM product";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(sql).getResultList();
@@ -92,14 +100,12 @@ public class ManageProductDaoImpl implements ManageProductDao {
         session.save(producer);
     }
 
-    private Session getCurrentSession(){
-        return sessionFactory.getCurrentSession();
-    }
-
     @Override
-    public List recentProducts() {
-        Criteria criteria = getCurrentSession().createCriteria(Product.class);
-        return null;
+    public List recentProducts(int start, int end) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM product order by created_date asc");
+        query.setFirstResult(start);
+        query.setMaxResults(end);
+        return query.getResultList();
     }
-
 }

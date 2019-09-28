@@ -36,7 +36,7 @@
                                             <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table"
                                                 rowspan="1" colspan="1"
                                                 aria-label="Size: activate to sort column ascending"
-                                                style="width: 138px;">Size
+                                                style="width: 138px;">Kind
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table"
                                                 rowspan="1" colspan="1"
@@ -46,7 +46,7 @@
                                             <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table"
                                                 rowspan="1" colspan="1"
                                                 aria-label="Salary: activate to sort column ascending"
-                                                style="width: 110px;">Detail
+                                                style="width: 110px;">Details
                                             </th>
                                         </tr>
                                         </thead>
@@ -56,9 +56,13 @@
                                                 <td class="sorting_1">${getAllProducts.getCodesProduct()}</td>
                                                 <td>${getAllProducts.getNameProduct()}</td>
                                                 <td>${getAllProducts.getProducer().getNameProducer()}</td>
-                                                <td>${getAllProducts.getDescribeProduct().substring(10)}.....</td>
-                                                <td>$ ${getAllProducts.getPrice()}00</td>
-                                                <td><a href="admin-details-product/id=${getAllProducts.getIdProduct()}"><i class="fa fa-info" style="color: #0a44a1; background: white"></i></a></td>
+                                                <c:forEach items="${getAllProducts.getProductDetails()}" var="kind" varStatus="status">
+                                                    <c:if test="${status.first}">
+                                                        <td>${kind.getKind().getNameKind()}</td>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <td>$ ${getAllProducts.getPrice()}00 VND</td>
+                                                <td><a href="admin-details-product?id=${getAllProducts.getIdProduct()}"><i class="fa fa-info" style="color: #0a44a1; background: white; margin-left: 30px"></i></a></td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>

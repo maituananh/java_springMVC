@@ -15,8 +15,13 @@ public class ManageProductServiceImpl implements ManageProductService {
     ManageProductDaoImpl manageProductDaoImpl;
 
     @Override
-    public List productList() {
-        return manageProductDaoImpl.productList();
+    public List productList(int position, int page) {
+        return manageProductDaoImpl.productList(position, page);
+    }
+
+    @Override
+    public List getAllProduct() {
+        return manageProductDaoImpl.getAllProduct();
     }
 
     @Override
@@ -70,7 +75,7 @@ public class ManageProductServiceImpl implements ManageProductService {
     }
 
     @Override
-    public List recentProducts() {
-        return null;
+    public List recentProducts(int start, int end) {
+        return manageProductDaoImpl.recentProducts(start, end);
     }
 }

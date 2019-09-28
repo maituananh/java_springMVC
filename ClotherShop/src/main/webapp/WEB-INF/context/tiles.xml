@@ -93,10 +93,16 @@
     </definition>
     
     <definition name="addProduct" extends="admin">
-        <put-attribute name="ADD PRODUCT" value="List User" />
+        <put-attribute name="title" value="ADD PRODUCT" />
         <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/pages/admin/addProduct.jsp" />
         <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp" />
+    </definition>
+    
+    <definition name="editProductAdmin" extends="admin">
+        <put-attribute name="title" value="EDIT PRODUCT" />
+        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/admin/editProductAdmin.jsp" />
     </definition>
     <!--  END ADMIN  -->
     
