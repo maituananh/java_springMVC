@@ -10,9 +10,10 @@
 <script src="<c:url value="/resources/admin/assets/js/lib/data-table/buttons.print.min.js"/>"></script>
 <script src="<c:url value="/resources/admin/assets/js/lib/data-table/buttons.colVis.min.js"/>"></script>
 <script src="<c:url value="/resources/admin/assets/js/init/datatables-init.js"/>"></script>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $('#bootstrap-data-table-export').DataTable();
     } );
 </script>
+<script src="<c:url value="/resources/js/custom.js"/>"></script>
+

@@ -44,9 +44,4 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
-    <!--  ============= đăng ký và hủy đăng ký với jdbc ================================ -->
-    <listener>
-        <listener-class>com.teambuild.clothershop.listener.JdbcListener</listener-class>
-    </listener>
 </web-app>

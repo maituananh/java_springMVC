@@ -15,10 +15,10 @@ public interface ManageProductService {
     List getAllSize();
     List getAllProducer();
 
-    void addKind(Kind kind);
-    void addColor(Color color);
-    void addSize(Size size);
-    void addProducer(Producer producer);
+    int addKind(Kind kind);
+    int addColor(Color color);
+    int addSize(Size size);
+    int addProducer(Producer producer);
 
     List recentProducts(int start, int end);
 }

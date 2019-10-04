@@ -55,23 +55,23 @@ public class ManageProductServiceImpl implements ManageProductService {
     }
 
     @Override
-    public void addKind(Kind kind) {
-        manageProductDaoImpl.addKind(kind);
+    public int addKind(Kind kind) {
+        return manageProductDaoImpl.addKind(kind);
     }
 
     @Override
-    public void addColor(Color color) {
-        manageProductDaoImpl.addColor(color);
+    public int addColor(Color color) {
+        return manageProductDaoImpl.addColor(color);
     }
 
     @Override
-    public void addSize(Size size) {
-        manageProductDaoImpl.addSize(size);
+    public int addSize(Size size) {
+        return manageProductDaoImpl.addSize(size);
     }
 
     @Override
-    public void addProducer(Producer producer) {
-        manageProductDaoImpl.addProducer(producer);
+    public int addProducer(Producer producer) {
+        return manageProductDaoImpl.addProducer(producer);
     }
 
     @Override

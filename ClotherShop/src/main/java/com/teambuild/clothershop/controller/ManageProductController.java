@@ -56,6 +56,7 @@ public class ManageProductController {
     @ResponseBody
     public String checkInfoProduct(@RequestParam String code, @RequestParam String name, @RequestParam String price,
                                    @RequestParam String describe, @RequestParam String producer) {
+        insertProduct = new Product(); // làm mới khi ng dùng cập nhập liên tục
         boolean check = false;
         if (CodesValidate.codesValidate(code)) {
             List<Product> productList = manageProductServiceImpl.getAllProduct();
@@ -174,7 +175,7 @@ public class ManageProductController {
             this.set.clear();
             this.insertProduct = new Product();
             return "true";
-        }catch (Exception e) {
+        } catch (Exception e) {
             return "false " + e;
         }
     }
@@ -200,68 +201,90 @@ public class ManageProductController {
         return "false";
     }
 
+    private String findItemsExist(String nameItems, String item) {
+        if (!EmptyValidate.emptyValidate(item.trim()) || !EmptyValidate.emptyValidate(nameItems.trim())) {
+            return "Please enter input";
+        }
+        int id; // id of items
+        switch (nameItems) {
+            case "KIND":
+                List<Kind> kindList = manageProductServiceImpl.getAllKind();
+                for (Kind k : kindList) {
+                    if (k.getNameKind().toUpperCase().equals(item.trim().toUpperCase())) {
+                        return "Kind already exist";
+                    }
+                }
+                Kind kind = new Kind();
+                kind.setNameKind(item.trim().toUpperCase());
+                id = manageProductServiceImpl.addKind(kind);
+                return id + "+KIND";
+
+            case "COLOR":
+                List<Color> colorList = manageProductServiceImpl.getAllColor();
+                for (Color c : colorList) {
+                    if (c.getNameColor().trim().toUpperCase().equals(item.trim().toUpperCase())) {
+                        return "Color already exist";
+                    }
+                }
+                Color color = new Color();
+                color.setNameColor(item.trim().toUpperCase());
+                id = manageProductServiceImpl.addColor(color);
+                return id + "+COLOR";
+
+            case "SIZE":
+                List<Size> sizeList = manageProductServiceImpl.getAllSize();
+                int sizeParseInt;
+                try {
+                    sizeParseInt = Integer.parseInt(item.trim());
+                    for (Size s : sizeList) {
+                        if (s.getNumber() == sizeParseInt) {
+                            return "Size already exist";
+                        }
+                    }
+                    Size size = new Size();
+                    size.setNumber(sizeParseInt);
+                    id = manageProductServiceImpl.addSize(size);
+                    return id + "+SIZE";
+                } catch (NumberFormatException e) {
+                    return "You enter wrong number format";
+                }
+
+            case "PRODUCER":
+                List<Producer> producerList = manageProductServiceImpl.getAllProducer();
+                String splitName = item.substring(0, item.indexOf("/"));
+                String splitAddress = item.substring(item.indexOf("/") + 1);
+                if (SpecialCharactersValidate.specialCharactersValidate(splitName) &&
+                        SpecialCharactersValidate.specialCharactersValidate(splitAddress)) {
+                    for (Producer producer : producerList) {
+                        if (producer.getNameProducer().toUpperCase().equals(splitName.toUpperCase())) {
+                            return "Name Producer already exist";
+                        }
+                    }
+                    Producer producer1 = new Producer();
+                    producer1.setNameProducer(splitName);
+                    producer1.setAddress(splitAddress);
+                    id = manageProductServiceImpl.addProducer(producer1);
+                    return id + "+PRODUCER";
+                } else {
+                    return "You don't write special characters";
+                }
+        }
+        return null;
+    }
+
     // LƯU item mới
     @PostMapping("saveItem")
     @ResponseBody
     public String saveItem(@RequestParam String header, @RequestParam String item) {
-        List<Color> colorList = manageProductServiceImpl.getAllColor();
-        List<Size> sizeList = manageProductServiceImpl.getAllSize();
-        List<Kind> kindList = manageProductServiceImpl.getAllKind();
-        List<Producer> producerList = manageProductServiceImpl.getAllProducer();
-        String subString = header.trim().toUpperCase().substring(7);
+        String subString = header.trim().toUpperCase().substring(7); // do có chữ new trước nên phải cắt
         if (subString.trim().equals("KIND")) {
-            for (Kind k:kindList) {
-                if (k.getNameKind().toUpperCase().equals(item.trim().toUpperCase())) {
-                    return "Kind already exist";
-                } else {
-                    Kind kind = new Kind();
-                    kind.setNameKind(item.trim().toUpperCase());
-                    manageProductServiceImpl.addKind(kind);
-                    return "true";
-                }
-            }
+            return findItemsExist("KIND", item);
         } else if (subString.trim().equals("COLOR")) {
-            for (Color c:colorList) {
-                if (c.getNameColor().trim().toUpperCase().equals(item.trim().toUpperCase())) {
-                    return "Color already exist";
-                } else {
-                    Color color = new Color();
-                    color.setNameColor(item.trim().toUpperCase());
-                    manageProductServiceImpl.addColor(color);
-                    return "true";
-                }
-            }
+            return findItemsExist("COLOR", item);
         } else if (subString.trim().equals("SIZE")) {
-            int sizeParseInt = Integer.parseInt(item.trim());
-            for (Size s:sizeList) {
-                if (s.getNumber() == sizeParseInt) {
-                    return "Size already exist";
-                } else {
-                    Size size = new Size();
-                    size.setNumber(sizeParseInt);
-                    manageProductServiceImpl.addSize(size);
-                    return "true";
-                }
-            }
+            return findItemsExist("SIZE", item);
         } else {
-            String splitName = item.substring(0, item.indexOf("/"));
-            String splitAddress = item.substring(item.indexOf("/") + 1);
-            if (SpecialCharactersValidate.specialCharactersValidate(splitName) && SpecialCharactersValidate.specialCharactersValidate(splitAddress)) {
-                for (Producer producer:producerList) {
-                    if (!producer.getNameProducer().toUpperCase().equals(splitName.toUpperCase())) {
-                        Producer producer1 = new Producer();
-                        producer1.setNameProducer(splitName);
-                        producer1.setAddress(splitAddress);
-                        manageProductServiceImpl.addProducer(producer1);
-                        return "true";
-                    } else {
-                        return "Name Producer already exist";
-                    }
-                }
-            } else {
-                return "You don't write special characters";
-            }
+            return findItemsExist("PRODUCER", item);
         }
-        return "false";
     }
 }

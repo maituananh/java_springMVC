@@ -50,54 +50,58 @@ public class ManageProductDaoImpl implements ManageProductDao {
 
     @Override
     public List getAllKind() {
-        String sql = "FROM kind";
+        String sql = "FROM kind order by idKind asc";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(sql).getResultList();
     }
 
     @Override
     public List getAllColor() {
-        String sql = "FROM color";
+        String sql = "FROM color order by idColor asc";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(sql).getResultList();
     }
 
     @Override
     public List getAllSize() {
-        String sql = "FROM size";
+        String sql = "FROM size order by idSize asc";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(sql).getResultList();
     }
 
     @Override
     public List getAllProducer() {
-        String sql = "FROM producer";
+        String sql = "FROM producer order by idProducer asc";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(sql).getResultList();
     }
 
     @Override
-    public void addKind(Kind kind) {
+    public int addKind(Kind kind) {
         Session session = sessionFactory.getCurrentSession();
         session.save(kind);
+        return kind.getIdKind();
     }
 
     @Override
-    public void addColor(Color color) {
+    public int addColor(Color color) {
         Session session = sessionFactory.getCurrentSession();
         session.save(color);
+        return color.getIdColor();
     }
 
     @Override
-    public void addSize(Size size) {
+    public int addSize(Size size) {
         Session session = sessionFactory.getCurrentSession();
         session.save(size);
+        return size.getIdSize();
     }
 
     @Override
-    public void addProducer(Producer producer) {
+    public int addProducer(Producer producer) {
         Session session = sessionFactory.getCurrentSession();
         session.save(producer);
+        return producer.getIdProducer();
     }
 
     @Override

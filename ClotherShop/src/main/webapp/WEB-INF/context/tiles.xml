@@ -101,8 +101,9 @@
     
     <definition name="editProductAdmin" extends="admin">
         <put-attribute name="title" value="EDIT PRODUCT" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp" />
+        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/admin/editProductAdmin.jsp" />
+        <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp" />
     </definition>
     <!--  END ADMIN  -->
     
