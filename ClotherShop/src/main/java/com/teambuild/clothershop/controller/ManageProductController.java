@@ -6,20 +6,15 @@ import com.teambuild.clothershop.validate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class ManageProductController {
@@ -27,9 +22,9 @@ public class ManageProductController {
     ManageProductServiceImpl manageProductServiceImpl;
 
     // đối tượng được lưu thông tin chính
-    private static Product insertProduct = new Product();
+    private Product insertProduct = new Product();
     // lưu chi tiết sản phẩm vào
-    private static Set<ProductDetails> set = new HashSet();
+    private Set<ProductDetails> set = new LinkedHashSet<>();
 
     @GetMapping("admin-getAllProduct")
     public String getAllProduct(ModelMap modelMap) {
@@ -56,7 +51,8 @@ public class ManageProductController {
     @ResponseBody
     public String checkInfoProduct(@RequestParam String code, @RequestParam String name, @RequestParam String price,
                                    @RequestParam String describe, @RequestParam String producer) {
-        insertProduct = new Product(); // làm mới khi ng dùng cập nhập liên tục
+        this.set.clear();
+        this.insertProduct = new Product();
         boolean check = false;
         if (CodesValidate.codesValidate(code)) {
             List<Product> productList = manageProductServiceImpl.getAllProduct();
@@ -116,37 +112,90 @@ public class ManageProductController {
     @ResponseBody
     public String saveProduct(@RequestParam String color, @RequestParam String kind, @RequestParam String size,
                               @RequestParam String quality, @RequestParam String file) {
+        String check = findProductDetails(color, size, kind, quality, file);
+        if (check.equals("true")) {
+            // lấy tên file
+            String fileName = file.substring(12);
+            // lưu chi tiết sản phẩm vào set
+            ProductDetails productDetails = objectProductDetails(color, size, kind, quality, fileName);
+            this.set.add(productDetails);
+            // đã lưu vào set
+            this.insertProduct.setProductDetails(this.set);
+            return "true-" + set.size();
+        } else {
+            return check;
+        }
+    }
+
+    // update vào khung chứa
+    @GetMapping("update-product-at-add")
+    @ResponseBody
+    public String updateProductAtAdd(@RequestParam String id, @RequestParam String color, @RequestParam String kind, @RequestParam String size,
+                                     @RequestParam String quality, @RequestParam String file) {
+        String check = findProductDetails(color, size, kind, quality, file);
+        if (check.equals("true")) {
+            int idReal = Integer.parseInt(id) - 1;
+            ProductDetails productDetailsNew = objectProductDetails(color, size, kind, quality, file);
+            List<ProductDetails> productDetailsList = new ArrayList<>();
+            productDetailsList.addAll(set);
+            productDetailsList.set(idReal, productDetailsNew);
+            set.clear();
+            set.addAll(productDetailsList);
+            this.set.add(productDetailsNew);
+            return check;
+        } else {
+            return check;
+        }
+    }
+
+    @PostMapping("delete-In-Container")
+    @ResponseBody
+    public String deleteInContainer(@RequestParam String id) {
+        int sizeSet = set.size();
+        int idReal = Integer.parseInt(id) - 1;
+        List<ProductDetails> productDetailsList = new ArrayList<>();
+        productDetailsList.addAll(set);
+        productDetailsList.remove(idReal);
+        set.clear();
+        set.addAll(productDetailsList);
+        int sizeSetNew = set.size();
+        if (sizeSet > sizeSetNew) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    private ProductDetails objectProductDetails(String color, String size, String kind, String quality, String image) {
+        Color insertColor = new Color();
+        insertColor.setIdColor(Integer.parseInt(color.trim()));
+
+        Kind insertKind = new Kind();
+        insertKind.setIdKind(Integer.parseInt(kind.trim()));
+
+        Size insertSize = new Size();
+        insertSize.setIdSize(Integer.parseInt(size.trim()));
+
+        Image insertImage = new Image();
+        insertImage.setPath(image.trim());
+
+        ProductDetails productDetails = new ProductDetails();
+        productDetails.setQuality(Integer.parseInt(quality.trim()));
+
+        productDetails.setColor(insertColor);
+        productDetails.setKind(insertKind);
+        productDetails.setSize(insertSize);
+        productDetails.setImage(insertImage);
+
+        return productDetails;
+    }
+
+    private String findProductDetails(String color, String size, String kind, String quality, String file) {
         if (EmptyValidate.emptyValidate(color)) {
             if (EmptyValidate.emptyValidate(kind)) {
                 if (EmptyValidate.emptyValidate(size)) {
                     if (QualityValidate.qualityValidate(quality)) {
                         if (EmptyValidate.emptyValidate(file)) {
-                            // lấy tên file
-                            String fileName = file.substring(12);
-
-                            // lưu chi tiết sản phẩm vào set static
-                            Color insertColor = new Color();
-                            insertColor.setIdColor(Integer.parseInt(color.trim()));
-
-                            Kind insertKind = new Kind();
-                            insertKind.setIdKind(Integer.parseInt(kind.trim()));
-
-                            Size insertSize = new Size();
-                            insertSize.setIdSize(Integer.parseInt(size.trim()));
-
-                            Image insertImage = new Image();
-                            insertImage.setPath(fileName.trim());
-
-                            ProductDetails productDetails = new ProductDetails();
-                            productDetails.setQuality(Integer.parseInt(quality.trim()));
-                            productDetails.setColor(insertColor);
-                            productDetails.setKind(insertKind);
-                            productDetails.setSize(insertSize);
-                            productDetails.setImage(insertImage);
-                            this.set.add(productDetails);
-                            // đã lưu vào set static
-
-                            this.insertProduct.setProductDetails(this.set);
                             return "true";
                         } else {
                             return "You need select image";

@@ -136,7 +136,7 @@
 					<strong class="card-title">PRODUCT DETAILS</strong>
 				</div>
 				<div class="card-body card-block">
-					<form class="form-horizontal" method="post" style="width: 50%; float: left">
+					<form class="form-horizontal" style="width: 50%; float: left">
 						<div style="display: none">
 							<input id="idOfDetails" type="text" value="">
 						</div>

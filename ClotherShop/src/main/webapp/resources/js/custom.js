@@ -392,7 +392,8 @@ $(document).ready(function () {
                 file: fileVal
             },
             success: function (value) {
-                if (value != "true") {
+                var substringValue = value.substr(0, 4);
+                if (substringValue != "true") {
                     // xuất thông báo lỗi
                     classDanger();
                     $("#notify").text(value);
@@ -403,90 +404,137 @@ $(document).ready(function () {
                     fadeToSaveProduct();
                     fadeInSaveAll();
                     // gọi hàm truyền vào table
-                    var id = $(".idTable").attr("id");
-                    if (id == null) {
-                        id = 0;
-                        $(".showTable").fadeTo(1000, 1);
-                    }
+                    var id = value.substr(5);
+                    $(".showTable").fadeTo(1000, 1);
                     addTable(parseInt(id), colorVal, sizeVal, kindVal, qualityVal, fileVal);
                     // làm rỗng box product details
-                    $("#color").val("");
-                    $("#kind").val("");
-                    $("#size").val("");
-                    $("#quality").val("");
-                    $("#file").val("");
-                    $("#showImage").attr("src", "resources/images/default_image.jpg");
+                    emptyBoxProductDetails();
                 }
             }
         });
     });
 
+    // làm rỗng box
+    function emptyBoxProductDetails() {
+        $("#color").val("");
+        $("#kind").val("");
+        $("#size").val("");
+        $("#quality").val("");
+        $("#file").val("");
+        $("#showImage").attr("src", "resources/images/default_image.jpg");
+    }
+
+    // kiểm tra các input đáp ứng đủ điều kiện thì lưu vào table
     function addTable(id, colorVal, sizeVal, kindVal, qualityVal, fileVal) {
-        var subPathImage = fileVal.substr(fileVal.lastIndexOf("\\") + 1);
-        var idNew = id + 1;
-        $("#newProductDetails").append("<tr id=id" + idNew + ">" +
-            "<td id=" + idNew + " class='idTable'>" + idNew + "</td>" +
-            "<td id='colorTable" + idNew + "'>" + $("#color option:selected").html() + "</td>" +
-            "<td id='sizeTable" + idNew + "'>" + $("#size option:selected").html() + "</td>" +
-            "<td id='kindTable" + idNew + "'>" + $("#kind option:selected").html() + "</td>" +
-            "<td id='qualityTable" + idNew + "'>" + qualityVal + "</td>" +
-            "<td id='pathImage" + idNew + "' style='width: 150px; height: 100px'>" +
-            "<img src=\"resources/images/" + subPathImage + "\"></td>" +
-            "<td> <button type='button' " +
-            "onclick='$(this).editTable(" + (id + 1) + "," + colorVal + "," + sizeVal + "," + kindVal + "," + qualityVal + ",\"" + subPathImage + "\")'>EDIT</button> </td>" +
+        var namFile = fileVal.substr(fileVal.lastIndexOf("\\") + 1);
+        $("#newProductDetails").append("<tr id=id" + id + ">" +
+            "<td id=" + id + " class='idTable' " + id + ">" + id + "</td>" +
+            "<td id='colorTable" + id + "'>" + $("#color option:selected").html() + "</td>" +
+            "<td id='sizeTable" + id + "'>" + $("#size option:selected").html() + "</td>" +
+            "<td id='kindTable" + id + "'>" + $("#kind option:selected").html() + "</td>" +
+            "<td id='qualityTable" + id + "'>" + qualityVal + "</td>" +
+            "<td style='width: 150px; height: 100px'>" +
+            "<img style='width: 150px; height: 100px' id='pathImage" + id + "' src=\"resources/images/" + namFile + "\"></td>" +
+            "<td id='button-edit" + id + "'> <button type='button' id='button-edit-" + id + "' " +
+            "onclick='$(this).editTable(" + id + "," + colorVal + "," + sizeVal + "," + kindVal + "," + qualityVal + ",\"" + namFile + "\")'>EDIT</button> " +
+            "<button type='button' id='button-delete-" + id + "' " +
+            "onclick='$(this).deleteTable(" + id + ")'>DELETE</button></td>" +
             "</tr>");
     }
 
-    $.fn.editTable = function (id, colorVal, sizeVal, kindVal, qualityVal, subPathImage) {
+    // khi nhấn nút edit ở table
+    $.fn.editTable = function (id, colorVal, sizeVal, kindVal, qualityVal, namFile) {
         $("#idOfDetails").val(id);
         $("#color").val("" + colorVal);
         $("#size").val("" + sizeVal);
         $("#kind").val("" + kindVal);
         $("#quality").val(qualityVal);
-        $("#showImage").attr('src', 'resources/images/' + subPathImage);
 
-        // chuyển nút save thành update.
+        $("#showImage").attr('src', 'resources/images/' + namFile);
+        // turn off button save and turn on button update.
         $(".product-details #box-button-save").css({"display": "none"});
         $(".product-details #box-button-update").css({"display": "block"});
+    };
+
+    $.fn.deleteTable = function (id) {
+        $.ajax({
+            url: "delete-In-Container",
+            data: {id: id},
+            type: "POST",
+            success: function (value) {
+                if (value == "true") {
+                    $("#id" + id).remove();
+                    classSuccess();
+                    $("#notify").text("Remove success");
+                } else {
+                    classDanger();
+                    $("#notify").text("Internal server error");
+                }
+            },
+            error: function (e) {
+                classDanger();
+                $("#notify").text("Internal server error");
+                console.log(e);
+            }
+        });
     };
 
     // cập nhập lại trong khung chứa và sửa lại ở table
     $("#update-product").click(function () {
         var idVal = $("#idOfDetails").val();
-        var colorVal = $("#color option:selected").html()
-        var sizeVal = $("#size option:selected").html()
-        var kindVal = $("#kind option:selected").html()
+        var colorVal = $("#color").val();
+        var kindVal = $("#kind").val();
+        var sizeVal = $("#size").val();
         var qualityVal = $("#quality").val();
-        var fileVal = $("#file").val();
-        if (fileVal == "") {
-            fileVal = $("#showImage").attr('src');
+
+        var colorText = $("#color option:selected").html();
+        var sizeText = $("#size option:selected").html();
+        var kindText = $("#kind option:selected").html();
+
+        var fileVal = $("#file").val(); // nếu ng dùng chọn ảnh mới thì lấy ảnh mới ngược lại lấy ảnh cũ
+        var nameFile = fileVal.substr(fileVal.lastIndexOf("\\") + 1);
+        if (nameFile == "") { // khi người dùng không chọn ảnh khi nhấn update thì system lấy ảnh cũ.
+            nameFile = $("#showImage").attr('src');
+            nameFile = nameFile.substr(nameFile.lastIndexOf("/") + 1);
         }
-        $("#" + idVal).text("" + idVal);
-        $("#colorTable" + idVal).text("" + colorVal);
-        $("#sizeTable" + idVal).text("" + sizeVal);
-        $("#kindTable" + idVal).text("" + kindVal);
-        $("#qualityTable" + idVal).text("" + qualityVal);
-        $("#pathImage" + idVal).prop("src", "" + fileVal);
-
-        $(".product-details #box-button-save").css({"display": "block"});
-        $(".product-details #box-button-update").css({"display": "none"});
-        // $.ajax({
-        //     url: "update",
-        //     type: "POST",
-        //     data: {
-        //         id: idVal,
-        //         color: colorVal,
-        //         size: sizeVal,
-        //         kind: kindVal,
-        //         quality: qualityVal,
-        //         srcImage: fileVal,
-        //     },
-        //     success: function (value) {
-        //
-        //     }
-        // });
+        // kiểm tra dưới backEnd trước nếu input == null thì dừng lại
+        $.ajax({
+            url: "update-product-at-add",
+            type: "Get",
+            data: {
+                id: idVal,
+                color: colorVal,
+                size: sizeVal,
+                kind: kindVal,
+                quality: qualityVal,
+                file: nameFile,
+            },
+            success: function (value) {
+                if (value != "true") {
+                    classDanger();
+                } else {
+                    // xóa button ở table
+                    $("#button-edit-" + idVal).remove();
+                    $("button-delete-" + idVal).remove();
+                    // tạo lại button ở table
+                    $("#button-edit" + idVal).html("<button type='button' id='button-edit-" + idVal + "' " +
+                        "onclick='$(this).editTable(" + idVal + ", " + colorVal + ", " + sizeVal + ", " + kindVal + ", " + qualityVal + ",\"" + nameFile + "\" )'>EDIT</button>" +
+                        "<button type='button' id='button-delete-" + idVal + "' onclick='$(this).deleteTable(" + idVal + ")'>DELETE</button>");
+                    // sửa lại ở table
+                    $("#" + idVal).text("" + idVal);
+                    $("#colorTable" + idVal).text("" + colorText);
+                    $("#sizeTable" + idVal).text("" + sizeText);
+                    $("#kindTable" + idVal).text("" + kindText);
+                    $("#qualityTable" + idVal).text("" + qualityVal);
+                    $("#pathImage" + idVal).attr("src", "resources/images/" + nameFile);
+                    $(".product-details #box-button-save").css({"display": "block"});
+                    $(".product-details #box-button-update").css({"display": "none"});
+                    emptyBoxProductDetails();
+                    classSuccess();
+                }
+            }
+        });
     });
-
 
     // khi các select trong details bị thay đổi thì nút lưu vào khung chứa hiển thị lên.
     $('select, #quality').change(function () {

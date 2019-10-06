@@ -1,6 +1,7 @@
 package com.teambuild.clothershop.model;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity(name = "product")
@@ -29,7 +30,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduct_DT")
-    private Set<ProductDetails> productDetails;
+    private Set<ProductDetails> productDetails = new LinkedHashSet<>();
 
     public Set<ProductDetails> getProductDetails() {
         return productDetails;
