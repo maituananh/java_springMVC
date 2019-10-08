@@ -59,9 +59,9 @@
 						</form>
 					</div>
 					<div class="card-footer">
-						<c:forEach items="${infoProductDetails.getProductDetails()}" var="productDetails">
-							<a href="id${productDetails.getIdProductDetails()}" class="btn btn-sm">
-									${productDetails.getIdProductDetails()}
+						<c:forEach begin="1" end="${infoProductDetails.getProductDetails().size()}" var="i">
+							<a href="id<c:out value="${i}"/>" class="btn btn-sm">
+								<c:out value="${i}"/>
 							</a>
 						</c:forEach>
 					</div>
@@ -100,8 +100,6 @@
 														<select name="select" class="form-control disabled">
 															<option value="${productDetails.getColor().getIdColor()}">${productDetails.getColor().getNameColor()}</option>
 															<option value="1">Option #1</option>
-															<option value="2">Option #2</option>
-															<option value="3">Option #3</option>
 														</select>
 													</div>
 													<div class="input-group">
@@ -110,8 +108,6 @@
 														<select name="select" class="form-control disabled">
 															<option value="0">Please select size</option>
 															<option value="1">Option #1</option>
-															<option value="2">Option #2</option>
-															<option value="3">Option #3</option>
 														</select>
 													</div>
 													<div class="input-group">
@@ -120,8 +116,6 @@
 														<select name="select" class="form-control disabled">
 															<option value="0">Please select kind</option>
 															<option value="1">Option #1</option>
-															<option value="2">Option #2</option>
-															<option value="3">Option #3</option>
 														</select>
 													</div>
 													<div class="input-group">
@@ -137,10 +131,10 @@
 											<div class="col col-md-6"><input type="button" value="EDIT"
 											                                 onClick="$(this).editDetails('${productDetails.getIdProductDetails()}');"
 											                                 id="${productDetails.getIdProductDetails()}"
-											                                 class="form-control btn btn-info edit-details">
+											                                 class="form-control btn btn-info edit-details-"${productDetails.getIdProductDetails()}>
 											</div>
 											<div class="col col-md-6"><input type="button" value="DELETE"
-											                                 class="form-control btn btn-danger delete-details">
+											                                 class="form-control btn btn-danger delete-details-"${productDetails.getIdProductDetails()}>
 											</div>
 										</div>
 									</form>

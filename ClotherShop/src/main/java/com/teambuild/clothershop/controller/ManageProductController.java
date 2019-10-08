@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
@@ -51,8 +50,7 @@ public class ManageProductController {
     @ResponseBody
     public String checkInfoProduct(@RequestParam String code, @RequestParam String name, @RequestParam String price,
                                    @RequestParam String describe, @RequestParam String producer) {
-        this.set.clear();
-        this.insertProduct = new Product();
+        reset();
         boolean check = false;
         if (CodesValidate.codesValidate(code)) {
             List<Product> productList = manageProductServiceImpl.getAllProduct();
@@ -128,7 +126,7 @@ public class ManageProductController {
     }
 
     // update vào khung chứa
-    @GetMapping("update-product-at-add")
+    @PostMapping("update-product-at-add")
     @ResponseBody
     public String updateProductAtAdd(@RequestParam String id, @RequestParam String color, @RequestParam String kind, @RequestParam String size,
                                      @RequestParam String quality, @RequestParam String file) {
@@ -160,7 +158,7 @@ public class ManageProductController {
         set.addAll(productDetailsList);
         int sizeSetNew = set.size();
         if (sizeSet > sizeSetNew) {
-            return "true";
+            return "true-" + sizeSetNew;
         } else {
             return "false";
         }
@@ -220,9 +218,7 @@ public class ManageProductController {
     public String insertProduct() {
         try {
             manageProductServiceImpl.insertProduct(this.insertProduct);
-            // set lại null cho khung chứa
-            this.set.clear();
-            this.insertProduct = new Product();
+            reset();
             return "true";
         } catch (Exception e) {
             return "false " + e;
@@ -335,5 +331,11 @@ public class ManageProductController {
         } else {
             return findItemsExist("PRODUCER", item);
         }
+    }
+
+    @GetMapping("resetContainer")
+    public void reset () {
+        this.set.clear();
+        this.insertProduct = new Product();
     }
 }

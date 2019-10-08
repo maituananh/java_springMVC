@@ -250,14 +250,14 @@ $(document).ready(function () {
     }
 
     function turnOffAddNewItems() {
-        $(".addNewItems").hide(2000);
+        $(".addNewItems").hide(500);
     }
 
     // END ===================== PHẦN BẬT VÀ TẮT BOX TẠO MỚI CÁC ITEMS
 
     // PHẦN BẬT VÀ TẮT BOX CHI TIẾT SẢN PHẨM
     function turnOnBoxProductDetails() {
-        $(".product-details").fadeTo(2000, 1, "linear");
+        $(".product-details").fadeTo(500, 1, "linear");
     }
 
     function turnOffBoxProductDetails() {
@@ -426,19 +426,18 @@ $(document).ready(function () {
 
     // kiểm tra các input đáp ứng đủ điều kiện thì lưu vào table
     function addTable(id, colorVal, sizeVal, kindVal, qualityVal, fileVal) {
-        var namFile = fileVal.substr(fileVal.lastIndexOf("\\") + 1);
+        var nameFile = fileVal.substr(fileVal.lastIndexOf("\\") + 1);
         $("#newProductDetails").append("<tr id=id" + id + ">" +
-            "<td id=" + id + " class='idTable' " + id + ">" + id + "</td>" +
-            "<td id='colorTable" + id + "'>" + $("#color option:selected").html() + "</td>" +
-            "<td id='sizeTable" + id + "'>" + $("#size option:selected").html() + "</td>" +
-            "<td id='kindTable" + id + "'>" + $("#kind option:selected").html() + "</td>" +
+            "<td id=" + id + " class='idTable" + id + "'>" + id + "</td>" +
+            "<td id='colorTable" + id + "' class='" + colorVal + "'>" + $("#color option:selected").html() + "</td>" +
+            "<td id='sizeTable" + id + "' class='" + sizeVal + "'>" + $("#size option:selected").html() + "</td>" +
+            "<td id='kindTable" + id + "' class='" + kindVal + "'>" + $("#kind option:selected").html() + "</td>" +
             "<td id='qualityTable" + id + "'>" + qualityVal + "</td>" +
             "<td style='width: 150px; height: 100px'>" +
-            "<img style='width: 150px; height: 100px' id='pathImage" + id + "' src=\"resources/images/" + namFile + "\"></td>" +
+            "<img style='width: 150px; height: 100px' id='pathImage" + id + "' src=\"resources/images/" + nameFile + "\"></td>" +
             "<td id='button-edit" + id + "'> <button type='button' id='button-edit-" + id + "' " +
-            "onclick='$(this).editTable(" + id + "," + colorVal + "," + sizeVal + "," + kindVal + "," + qualityVal + ",\"" + namFile + "\")'>EDIT</button> " +
-            "<button type='button' id='button-delete-" + id + "' " +
-            "onclick='$(this).deleteTable(" + id + ")'>DELETE</button></td>" +
+            "onclick='$(this).editTable(" + id + "," + colorVal + "," + sizeVal + "," + kindVal + "," + qualityVal + ",\"" + nameFile + "\")'>EDIT</button> " +
+            "<button type='button' id='button-delete-" + id + "' " + "onclick='$(this).deleteTable(" + id + ")'>DELETE</button></td>" +
             "</tr>");
     }
 
@@ -462,10 +461,48 @@ $(document).ready(function () {
             data: {id: id},
             type: "POST",
             success: function (value) {
-                if (value == "true") {
+                var subStrValue = value.substr(0, 4);
+                var sizeSet = value.substr(5);
+                if (subStrValue == "true") {
                     $("#id" + id).remove();
                     classSuccess();
                     $("#notify").text("Remove success");
+                    var colorID = "";
+                    var sizeID = "";
+                    var kindID = "";
+                    var quality = "";
+                    var nameFile = "";
+                    for (var i = 1; i <= parseInt(sizeSet) + 1; i++) {
+                        var changeId = $("#" + i).attr('id');
+                        if (typeof(changeId) === "undefined") {
+                            for (var j = i + 1; j <= parseInt(sizeSet) + 1; j++) {
+                                $("#id" + j).attr("id", "id" + i);
+                                $("#" + j).attr('id', i).text(i);
+                                $(".idTable" + j).attr("class", "idTable" + i);
+                                $("#colorTable" + j).attr("id", "colorTable" + i);
+                                $("#sizeTable" + j).attr("id", "sizeTable" + i);
+                                $("#kindTable" + j).attr("id", "kindTable" + i);
+                                $("#qualityTable" + j).attr("id", "qualityTable" + i);
+                                $("#pathImage" + j).attr("id", "pathImage" + i);
+                                $("#button-edit" + j).attr("id", "button-edit" + i);
+
+                                colorID = $("#colorTable" + i).attr("class");
+                                sizeID = $("#sizeTable" + i).attr("class");
+                                kindID = $("#kindTable" + i).attr("class");
+                                quality = $("#qualityTable" + i).text();
+                                nameFile = $("#pathImage" + i).attr("src");
+                                nameFile = nameFile.substr(nameFile.lastIndexOf("/"));
+
+                                // xóa 2 nút button ở table vì đã bị thay đổi
+                                $("#button-edit-" + i).remove();
+                                $("#button-delete-" + i).remove();
+
+                                // tạo lại nút button với id mới
+                                createButtonInTable(i, colorID, sizeID, kindID, quality, nameFile);
+                                i++;
+                            }
+                        }
+                    }
                 } else {
                     classDanger();
                     $("#notify").text("Internal server error");
@@ -500,7 +537,7 @@ $(document).ready(function () {
         // kiểm tra dưới backEnd trước nếu input == null thì dừng lại
         $.ajax({
             url: "update-product-at-add",
-            type: "Get",
+            type: "POST",
             data: {
                 id: idVal,
                 color: colorVal,
@@ -517,9 +554,7 @@ $(document).ready(function () {
                     $("#button-edit-" + idVal).remove();
                     $("button-delete-" + idVal).remove();
                     // tạo lại button ở table
-                    $("#button-edit" + idVal).html("<button type='button' id='button-edit-" + idVal + "' " +
-                        "onclick='$(this).editTable(" + idVal + ", " + colorVal + ", " + sizeVal + ", " + kindVal + ", " + qualityVal + ",\"" + nameFile + "\" )'>EDIT</button>" +
-                        "<button type='button' id='button-delete-" + idVal + "' onclick='$(this).deleteTable(" + idVal + ")'>DELETE</button>");
+                    createButtonInTable(idVal, colorVal, sizeVal, kindVal, qualityVal, nameFile);
                     // sửa lại ở table
                     $("#" + idVal).text("" + idVal);
                     $("#colorTable" + idVal).text("" + colorText);
@@ -532,9 +567,18 @@ $(document).ready(function () {
                     emptyBoxProductDetails();
                     classSuccess();
                 }
+            },
+            error: function (e) {
+                console.log(e);
             }
         });
     });
+
+    function createButtonInTable(id, color, size, kind, quality, image) {
+        $("#button-edit" + id).html("<button type='button' id='button-edit-" + id + "' " +
+            "onclick='$(this).editTable(" + id + ", " + color + ", " + size + ", " + kind + ", " + quality + ",\"" + image + "\" )'>EDIT</button>" +
+            "<button type='button' id='button-delete-" + id + "' onclick='$(this).deleteTable(" + id + ")'>DELETE</button>");
+    }
 
     // khi các select trong details bị thay đổi thì nút lưu vào khung chứa hiển thị lên.
     $('select, #quality').change(function () {
@@ -544,66 +588,51 @@ $(document).ready(function () {
 
     // thực hiện lưu vào data
     $("#save-product-data").click(function () {
-        $.ajax({
-            url: "insertProduct",
-            type: "POST",
-            success: function (value) {
-                if (value != "true") {
-                    console.log(value);
-                    classDanger();
-                } else {
-                    classSuccess();
-                    $(".product-details").hide(2000);
-                    effectiveProductMain();
-                    emptyProductMain();
+        var checkTable = $("#id1").attr("id");
+        if (typeof(checkTable) === "undefined") {
+            $("#notify").text("container empty");
+            $("#save-product-data").hide();
+            classDanger();
+        } else {
+            $.ajax({
+                url: "insertProduct",
+                type: "POST",
+                success: function (value) {
+                    if (value != "true") {
+                        console.log(value);
+                        classDanger();
+                    } else {
+                        classSuccess();
+                        $(".product-details").hide(2000);
+                        effectiveProductMain();
+                        emptyProductMain();
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
 
     // trang editProductAdmin
-    function cssEdit(value) {
-        $(".edit-" + value).val("EDIT");
-        $(".edit-" + value).css({"backgroundColor": "#5bc0de", "border-color": "#46b8da", "color": "#fff"});
-        $(".delete-" + value).val("DELETE");
-        $(".delete-" + value).css({"background-color": "#d9534f", "border-color": "#d43f3a", "color": "#fff"});
-    }
-
-    function cssUpdate(value) {
-        $(".edit-" + value).val("UPDATE");
-        $(".edit-" + value).css({"backgroundColor": "#449d44", "border-color": "#398439", "color": "#fff"});
-        $(".delete-" + value).val("CANCEL");
-        $(".delete-" + value).css({"background-color": "#ec971f", "border-color": "#d58512", "color": "#fff"});
-    }
-
-    function cssEditMain() {
-        $(".main-form .disabled").prop("disabled", true);
-        cssEdit("main");
-    }
-
-    function cssUpdateMain() {
-        $(".main-form .disabled").prop("disabled", false);
-        cssUpdate("main");
-    }
-
     $(".row-product-details .disabled").prop("disabled", true);
+
     $(".edit-main").click(function () {
         if ($(".edit-main").val() == "EDIT") {
-            cssUpdateMain();
+            $(".main-form .edit-main").removeClass("btn-info").addClass("btn-success").val("UPDATE");
+            delete-main
+            $(".main-form .disabled").prop("disabled", false);
         } else {
-            cssEditMain();
+            $(".main-form .edit-main").removeClass("btn-success").addClass("btn-info").val("EDIT");
+            $(".main-form .disabled").prop("disabled", true);
         }
     });
 
     function cssEditDetails(id) {
         $("#formId" + id + " .disabled").prop("disabled", true);
-        cssEdit("details");
     }
 
     function cssUpdateDetails(id) {
         $("#formId" + id + " .disabled").prop("disabled", false);
-        cssUpdate("details");
     }
 
     // chờ nút button details click sẽ hoạt động
@@ -614,4 +643,5 @@ $(document).ready(function () {
             cssEditDetails(id);
         }
     };
+
 })// end

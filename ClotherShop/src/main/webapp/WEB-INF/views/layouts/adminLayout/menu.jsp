@@ -9,7 +9,8 @@
                     style="color: #31b0d5"
                     class="menu-icon fa fa-suitcase"></i>PRODUCT</a>
             <ul class="sub-menu children dropdown-menu">
-                <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
+                <li><i class="fa fa-list"></i><a href="admin-getAllProduct">List Products</a></li>
+                <li><i class="fa fa-plus-square"></i><a href="admin-addProduct">Insert Product</a></li>
             </ul>
         </li>
         <li class="menu-item-has-children dropdown">

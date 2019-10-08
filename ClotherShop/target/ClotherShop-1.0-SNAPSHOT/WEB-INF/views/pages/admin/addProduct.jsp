@@ -129,7 +129,7 @@
 	<%--   END =====  PHẦN THÊM MỚI NHÀ SẢN XUẤT CỦA PHẦN CHÍNH SẢN PHẨM      --%>
 	
 	<%--    PHẦN THÔNG TIN CHI TIẾT CỦA SẢN PHẨM     --%>
-	<div class="row product-details" style="display: block" id="details">
+	<div class="row product-details" style="display: none" id="details">
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
@@ -296,6 +296,15 @@
             readURL(this);
         });
     });//end
+    
+    // nếu trang reload thì reset Container
+    $(window).bind('beforeunload', function()
+    {
+        $.ajax({
+	        url: "resetContainer",
+	        type: "GET",
+        });
+    });
 </script>
 
 
