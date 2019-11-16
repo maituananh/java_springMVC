@@ -1,138 +1,138 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
-        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <!--  START PAGE HOME  -->
-    <definition name="home" template="/WEB-INF/views/layouts/layout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/views/layouts/header.jsp" />
-        <put-attribute name="banner" value="/WEB-INF/views/layouts/banner.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/views/layouts/footer.jsp" />
-    </definition>
-
-    <definition name="pageHome" extends="home">
-        <put-attribute name="title" value="Home" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
-    </definition>
-    <!--  END PAGE HOME  -->
+	<!--  START PAGE HOME  -->
+	<definition name="home" template="/WEB-INF/views/layouts/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/views/layouts/header.jsp"/>
+		<put-attribute name="banner" value="/WEB-INF/views/layouts/banner.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/footer.jsp"/>
+	</definition>
+	
+	<definition name="pageHome" extends="home">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/home.jsp"/>
+	</definition>
+	<!--  END PAGE HOME  -->
+	
+	<!--  START PAGE  -->
+	<definition name="page" template="/WEB-INF/views/layouts/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/views/layouts/header.jsp"/>
+		<put-attribute name="banner" value="/WEB-INF/views/layouts/bannerPage.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/footer.jsp"/>
+	</definition>
+	
+	<definition name="login" extends="page">
+		<put-attribute name="title" value="Login"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/login.jsp"/>
+	</definition>
+	
+	<definition name="registered" extends="page">
+		<put-attribute name="title" value="Registered"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/registered.jsp"/>
+	</definition>
+	
+	<definition name="checkOut" extends="page">
+		<put-attribute name="title" value="CheckOut"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/checkOut.jsp"/>
+	</definition>
+	
+	<definition name="pageDetails" extends="page">
+		<put-attribute name="title" value="Details Product"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/pageDetails.jsp"/>
+	</definition>
+	<!--  END PAGE  -->
+	
+	<!-- ADMIN -->
+	<definition name="admin" template="/WEB-INF/views/layouts/adminLayout/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="link" value=""/>
+		<put-attribute name="header" value="/WEB-INF/views/layouts/adminLayout/header.jsp"/>
+		<put-attribute name="leftPanel" value="/WEB-INF/views/layouts/adminLayout/leftPanel.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/adminLayout/footer.jsp"/>
+		<put-attribute name="script" value=""/>
+	</definition>
+	
+	<definition name="adminHome" extends="admin">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/homeAdmin.jsp"/>
+		<put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp"/>
+	</definition>
+	
+	<definition name="listUser" extends="admin">
+		<put-attribute name="title" value="List User"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/listUserLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/listUser.jsp"/>
+		<put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/listUserScript.jsp"/>
+	</definition>
+	
+	<definition name="profile" extends="admin">
+		<put-attribute name="title" value="Profile"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/profileLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/profileAdmin.jsp"/>
+	</definition>
+	
+	<definition name="profileAdmin" extends="admin">
+		<put-attribute name="title" value="Profile Admin"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/profileLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/editProfileAdmin.jsp"/>
+	</definition>
+	
+	<definition name="listProduct" extends="admin">
+		<put-attribute name="title" value="List User"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/listUserLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/listProduct.jsp"/>
+		<put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/listUserScript.jsp"/>
+	</definition>
+	
+	<definition name="addProduct" extends="admin">
+		<put-attribute name="title" value="ADD PRODUCT"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/addProduct.jsp"/>
+		<put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp"/>
+	</definition>
+	
+	<definition name="editProductAdmin" extends="admin">
+		<put-attribute name="title" value="EDIT PRODUCT"/>
+		<put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/editProductAdmin.jsp"/>
+		<put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp"/>
+	</definition>
+	<!--  END ADMIN  -->
+	
+	<!-- Verification -->
+	<definition name="verificationLayout" template="/WEB-INF/views/layouts/adminLayout/verificationLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="body" value=""/>
+	</definition>
+	
+	<definition name="verification" extends="verificationLayout">
+		<put-attribute name="title" value="Verification"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/admin/verification.jsp"/>
+	</definition>
+	<!--  END Verification  -->
+	
+	<!-- START ERROR -->
+	<definition name="error" template="/WEB-INF/views/layouts/errorLayout/errorLayout403.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="body" value=""/>
+	</definition>
+	
+	<definition name="error403" extends="error">
+		<put-attribute name="title" value="403"/>
+		<put-attribute name="body" value="/WEB-INF/views/exception/error404.jsp"/>
+	</definition>
     
-    <!--  START PAGE  -->
-    <definition name="page" template="/WEB-INF/views/layouts/layout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/views/layouts/header.jsp" />
-        <put-attribute name="banner" value="/WEB-INF/views/layouts/bannerPage.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/views/layouts/footer.jsp" />
+    <definition name="error500" extends="error">
+        <put-attribute name="title" value="500"/>
+        <put-attribute name="body" value="/WEB-INF/views/exception/error500.jsp"/>
     </definition>
-
-    <definition name="login" extends="page">
-        <put-attribute name="title" value="Login" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/login.jsp" />
-    </definition>
-    
-    <definition name="registered" extends="page">
-        <put-attribute name="title" value="Registered" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/registered.jsp" />
-    </definition>
-    
-    <definition name="checkOut" extends="page">
-        <put-attribute name="title" value="CheckOut" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/checkOut.jsp" />
-    </definition>
-    
-    <definition name="pageDetails" extends="page">
-        <put-attribute name="title" value="Details Product" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/pageDetails.jsp" />
-    </definition>
-    <!--  END PAGE  -->
-    
-    <!-- ADMIN -->
-    <definition name="admin" template="/WEB-INF/views/layouts/adminLayout/layout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="link" value="" />
-        <put-attribute name="header" value="/WEB-INF/views/layouts/adminLayout/header.jsp" />
-        <put-attribute name="leftPanel" value="/WEB-INF/views/layouts/adminLayout/leftPanel.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/views/layouts/adminLayout/footer.jsp" />
-        <put-attribute name="script" value="" />
-    </definition>
-    
-    <definition name="adminHome" extends="admin">
-        <put-attribute name="title" value="Home" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/homeAdmin.jsp" />
-        <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp" />
-    </definition>
-    
-    <definition name="listUser" extends="admin">
-        <put-attribute name="title" value="List User" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/listUserLink.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/listUser.jsp" />
-        <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/listUserScript.jsp" />
-    </definition>
-    
-    <definition name="profile" extends="admin">
-        <put-attribute name="title" value="Profile" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/profileLink.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/profileAdmin.jsp" />
-    </definition>
-    
-    <definition name="profileAdmin" extends="admin">
-        <put-attribute name="title" value="Profile Admin" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/profileLink.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/editProfileAdmin.jsp" />
-    </definition>
-    
-    <definition name="listProduct" extends="admin">
-        <put-attribute name="title" value="List User" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/listUserLink.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/listProduct.jsp" />
-        <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/listUserScript.jsp" />
-    </definition>
-    
-    <definition name="addProduct" extends="admin">
-        <put-attribute name="title" value="ADD PRODUCT" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/addProduct.jsp" />
-        <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp" />
-    </definition>
-    
-    <definition name="editProductAdmin" extends="admin">
-        <put-attribute name="title" value="EDIT PRODUCT" />
-        <put-attribute name="link" value="/WEB-INF/views/pages/admin/adminLink/homeLink.jsp"/>
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/editProductAdmin.jsp" />
-        <put-attribute name="script" value="/WEB-INF/views/pages/admin/adminScript/homeScript.jsp" />
-    </definition>
-    <!--  END ADMIN  -->
-    
-    <!-- Verification -->
-    <definition name="verificationLayout" template="/WEB-INF/views/layouts/adminLayout/verificationLayout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="body" value="" />
-    </definition>
-    
-    <definition name="verification" extends="verificationLayout">
-        <put-attribute name="title" value="Verification" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/verification.jsp" />
-    </definition>
-    <!--  END Verification  -->
-    
-    <!-- START ERROR -->
-    <definition name="error" template="/WEB-INF/views/layouts/errorLayout/errorLayout403.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="body" value="" />
-    </definition>
-    
-    <definition name="error403" extends="error">
-        <put-attribute name="title" value="403" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/error403.jsp" />
-    </definition>
-    
-    <definition name="adminError403" extends="error">
-        <put-attribute name="title" value="403" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/admin/adminError403.jsp" />
-    </definition>
-    <!--  END ERROR  -->
+	<!--  END ERROR  -->
 </tiles-definitions>

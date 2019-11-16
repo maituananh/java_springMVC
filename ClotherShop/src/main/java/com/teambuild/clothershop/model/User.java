@@ -28,7 +28,7 @@ public class User {
     @JoinColumn(name = "idGender_User")
     private Gender gender;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // chưa sử lý
+    @OneToOne(fetch = FetchType.EAGER) // chưa sử lý
     @JoinColumn(name = "idVerificationCodes_User")
     private Verification verification;
 

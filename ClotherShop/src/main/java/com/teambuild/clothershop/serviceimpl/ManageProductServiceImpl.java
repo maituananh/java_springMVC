@@ -75,6 +75,21 @@ public class ManageProductServiceImpl implements ManageProductService {
     }
 
     @Override
+    public void deleteProduct(int id) {
+        manageProductDaoImpl.deleteProduct(id);
+    }
+
+    @Override
+    public void deleteProductDetail(int id) {
+        manageProductDaoImpl.deleteProductDetail(id);
+    }
+
+    @Override
+    public void updateProductDetail(ProductDetails productDetails) {
+        manageProductDaoImpl.updateProductDetail(productDetails);
+    }
+
+    @Override
     public List recentProducts(int start, int end) {
         return manageProductDaoImpl.recentProducts(start, end);
     }

@@ -105,6 +105,28 @@ public class ManageProductDaoImpl implements ManageProductDao {
     }
 
     @Override
+    public void deleteProduct(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Product product = new Product();
+        product.setIdProduct(id);
+        session.delete(product);
+    }
+
+    @Override
+    public void deleteProductDetail(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        ProductDetails productDetails = new ProductDetails();
+        productDetails.setIdProductDetails(id);
+        session.delete(productDetails);
+    }
+
+    @Override
+    public void updateProductDetail(ProductDetails productDetails) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(productDetails);
+    }
+
+    @Override
     public List recentProducts(int start, int end) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM product order by created_date asc");

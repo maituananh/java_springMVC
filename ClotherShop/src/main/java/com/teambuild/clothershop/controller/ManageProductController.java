@@ -34,14 +34,6 @@ public class ManageProductController {
 
     @GetMapping("admin-addProduct")
     public String addProduct(ModelMap modelMap) {
-        List<Color> colorList = manageProductServiceImpl.getAllColor();
-        List<Size> sizeList = manageProductServiceImpl.getAllSize();
-        List<Kind> kindList = manageProductServiceImpl.getAllKind();
-        List<Producer> producerList = manageProductServiceImpl.getAllProducer();
-        modelMap.addAttribute("colorList", colorList);
-        modelMap.addAttribute("sizeList", sizeList);
-        modelMap.addAttribute("kindList", kindList);
-        modelMap.addAttribute("producerList", producerList);
         return "addProduct";
     }
 
@@ -234,10 +226,15 @@ public class ManageProductController {
     @ResponseBody
     public String moveFile(MultipartHttpServletRequest multipartHttpServletRequest) {
         String path_save_file = context.getRealPath("/resources/images/");
+        String save_project = path_save_file.substring(0, path_save_file.indexOf("target\\"));
         Iterator<String> stringIterator = multipartHttpServletRequest.getFileNames();
         MultipartFile multipartFile = multipartHttpServletRequest.getFile(stringIterator.next());
-        File file = new File(path_save_file + multipartFile.getOriginalFilename());
+        File file = new File(path_save_file + multipartFile.getOriginalFilename());// đường dẫn lưu trên save
+        File fileSave_project = new File(save_project + "src/main/webapp/resources/images/" +
+                multipartFile.getOriginalFilename()); // đường dẫn lưu vào thư mục gốc trong dự án
         try {
+//            multipartFile.transferTo(fileSave_project);
+//            System.out.println("đường dẫn file " + fileSave_project);
             multipartFile.transferTo(file);
             return "true";
         } catch (IOException e) {
@@ -334,8 +331,72 @@ public class ManageProductController {
     }
 
     @GetMapping("resetContainer")
-    public void reset () {
+    @ResponseBody
+    public void reset() {
         this.set.clear();
         this.insertProduct = new Product();
+    }
+
+    // delete product
+    @PostMapping("deleteProductByID")
+    @ResponseBody
+    public void deleteProduct(@RequestParam String id) {
+        manageProductServiceImpl.deleteProduct(Integer.parseInt(id.trim()));
+    }
+
+    // delete product detail
+    @PostMapping("deleteProductDetailByID")
+    @ResponseBody
+    public void deleteProductDetail(@RequestParam String id) {
+        manageProductServiceImpl.deleteProductDetail(Integer.parseInt(id.trim()));
+    }
+
+    // lấy chi tiết sản phẩm
+    @GetMapping("productDetails")
+    public String productDetails(@RequestParam int id, ModelMap modelMap) {
+        modelMap.addAttribute("infoProduct", detailsProduct(id));
+        return "pageDetails";
+    }
+
+    @GetMapping("admin-details-product")
+    public String adminDetailProduct(ModelMap modelMap, @RequestBody @RequestParam int id) {
+        modelMap.addAttribute("infoProductDetails", detailsProduct(id));
+        return "editProductAdmin";
+    }
+
+    private Product detailsProduct(int id) {
+        Product productDetails = manageProductServiceImpl.selectProductById(id);
+        return productDetails;
+    }
+
+    @PostMapping("UpdateProductDetail")
+    @ResponseBody
+    public void updateProduct(@RequestParam String idProduct, @RequestParam String idDetail, @RequestParam String quantity,
+                              @RequestParam String color, @RequestParam String size, @RequestParam String kind,
+                              @RequestParam String nameFile) {
+        ProductDetails productDetails = new ProductDetails();
+        productDetails.setIdProductDetails(Integer.parseInt(idDetail.trim()));
+        productDetails.setQuality(Integer.parseInt(quantity.trim()));
+
+        Product product = new Product();
+        product.setIdProduct(Integer.parseInt(idProduct.trim()));
+        productDetails.setProduct(product);
+
+        Color setIdColor = new Color();
+        setIdColor.setIdColor(Integer.parseInt(color.trim()));
+        productDetails.setColor(setIdColor);
+
+        Size setIdSize = new Size();
+        setIdSize.setIdSize(Integer.parseInt(size.trim()));
+        productDetails.setSize(setIdSize);
+
+        Kind setIdKind = new Kind();
+        setIdKind.setIdKind(Integer.parseInt(kind.trim()));
+        productDetails.setKind(setIdKind);
+
+        Image setUrlImage = new Image();
+        setUrlImage.setPath(nameFile.trim());
+        productDetails.setImage(setUrlImage);
+        manageProductServiceImpl.updateProductDetail(productDetails);
     }
 }

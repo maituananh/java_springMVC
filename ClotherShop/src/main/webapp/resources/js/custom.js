@@ -351,7 +351,7 @@ $(document).ready(function () {
 
     // lưu file ngay sau khi chọn
     var files = [];
-    $("#file").change(function (event) {
+    function saveFile(event) {
         files = event.target.files;
         var forms = new FormData();
         // đặt tên key là file và có value là files ở vị trí thứ ko.
@@ -371,6 +371,10 @@ $(document).ready(function () {
                 }
             }
         })
+    }
+
+    $("#file").change(function (event) {
+        saveFile(event);
     });
     // END ============= lưu file ngay sau khi chọn
 
@@ -474,7 +478,7 @@ $(document).ready(function () {
                     var nameFile = "";
                     for (var i = 1; i <= parseInt(sizeSet) + 1; i++) {
                         var changeId = $("#" + i).attr('id');
-                        if (typeof(changeId) === "undefined") {
+                        if (typeof (changeId) === "undefined") {
                             for (var j = i + 1; j <= parseInt(sizeSet) + 1; j++) {
                                 $("#id" + j).attr("id", "id" + i);
                                 $("#" + j).attr('id', i).text(i);
@@ -589,7 +593,7 @@ $(document).ready(function () {
     // thực hiện lưu vào data
     $("#save-product-data").click(function () {
         var checkTable = $("#id1").attr("id");
-        if (typeof(checkTable) === "undefined") {
+        if (typeof (checkTable) === "undefined") {
             $("#notify").text("container empty");
             $("#save-product-data").hide();
             classDanger();
@@ -630,19 +634,85 @@ $(document).ready(function () {
 
     function cssEditDetails(id) {
         $("#formId" + id + " .disabled").prop("disabled", true);
+        $(".edit-details-" + id).removeClass("btn-success").addClass("btn-info").val("EDIT");
+        var idProduct = $("#idProduct").val();
+        var idProductDetailVal = $("#formId" + id + " #idDetailProduct-" + id).val();
+        var quantityVal = $("#formId" + id + " #quantity-" + id).val();
+        var idColor = $("#formId" + id + " #color-" + id).val();
+        var idSize = $("#formId" + id + " #size-" + id).val();
+        var idKind = $("#formId" + id + " #kind-" + id).val();
+        var nameFile = $("#file-" + id).val();
+        var ChangeNameFile = nameFile.replace(/C:\\fakepath\\/i, '');
+        $.ajax({
+            url: "UpdateProductDetail",
+            type: "POST",
+            data: {
+                idProduct: idProduct,
+                idDetail: idProductDetailVal,
+                quantity: quantityVal,
+                color: idColor,
+                size: idSize,
+                kind: idKind,
+                nameFile: ChangeNameFile
+            },success: function () {
+                console.log("update success");
+            }
+        });
     }
+
+    // thực thi khi update hình ảnh sản phẩm
+    $.fn.fileImage = function (id) {
+        $("#file-" + id).change(function (event) {
+            saveFile(event);
+            var nameFile = $("#file-" + id).val();
+            var ChangeNameFile = nameFile.replace(/C:\\fakepath\\/i, '');
+            $(".avatar-" + id).attr("src", "resources/images/" + ChangeNameFile);
+        });
+    };
 
     function cssUpdateDetails(id) {
         $("#formId" + id + " .disabled").prop("disabled", false);
+        $(".edit-details-" + id).removeClass("btn-info").addClass("btn-success").val("UPDATE");
     }
 
-    // chờ nút button details click sẽ hoạt động
     $.fn.editDetails = function (id) {
-        if ($("#" + id).val() == "EDIT") {
+        if ($(".edit-details-" + id).val() == "EDIT") {
             cssUpdateDetails(id);
         } else {
             cssEditDetails(id);
         }
+    };
+
+    // xóa sản phẩm
+    $(".deleteProduct-main").click(function () {
+        var idVal = $("#idProduct").val();
+        $.ajax({
+            url: "deleteProductByID",
+            type: "POST",
+            data: {
+                id: idVal,
+            },
+            success: function () {
+                var url = window.location.href;
+                var changeUrl = url.substr(0, url.indexOf("admin-details-product?"));
+                window.location.href = changeUrl + 'admin-getAllProduct';
+            },
+            error: function () {
+
+            }
+        })
+    });
+
+    // xóa chi tiết của sản phẩm
+    $.fn.deleteDetails = function (id) {
+        var idVal = id;
+        $.ajax({
+            url: "deleteProductDetailByID",
+            type: "POST",
+            data: {
+                id: idVal,
+            },});
+        location.reload();
     };
 
 })// end

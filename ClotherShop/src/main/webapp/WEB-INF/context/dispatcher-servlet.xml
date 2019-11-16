@@ -34,6 +34,9 @@
     <mvc:interceptors>
         <bean class="com.teambuild.clothershop.interceptor.EventProductInterceptor"></bean>
     </mvc:interceptors>
+    <mvc:interceptors>
+        <bean class="com.teambuild.clothershop.interceptor.KindProduct"></bean>
+    </mvc:interceptors>
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
     <!--  End Interceptor  -->
 

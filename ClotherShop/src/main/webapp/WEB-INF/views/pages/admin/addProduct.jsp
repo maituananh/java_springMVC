@@ -75,11 +75,10 @@
 							</div>
 						</div>
 						<div class="row form-group">
-							<div class="col col-md-6"><input type="button" value="SAVE"
-							                                 id="check-button"
+							<div class="col col-md-6"><input type="button" value="SAVE" id="check-button"
 							                                 class="form-control btn btn-info disabled-main"></div>
 							<div class="col col-md-6"><input type="button" value="EDIT" disabled id="EDIT"
-							                                 style="color: white" ;
+							                                 style="color: white"
 							                                 class="form-control btn btn-warning disabled-main"></div>
 						</div>
 					</form>
@@ -265,15 +264,15 @@
 	<div style="display: none" class="showTable">
 		<table class="table table-bordered">
 			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Color</th>
-					<th>Size</th>
-					<th>Kind</th>
-					<th>Quality</th>
-					<th>image</th>
-					<th>Action</th>
-				</tr>
+			<tr>
+				<th>Id</th>
+				<th>Color</th>
+				<th>Size</th>
+				<th>Kind</th>
+				<th>Quality</th>
+				<th>image</th>
+				<th>Action</th>
+			</tr>
 			</thead>
 			<tbody id="newProductDetails">
 			</tbody>
@@ -296,13 +295,12 @@
             readURL(this);
         });
     });//end
-    
+
     // nếu trang reload thì reset Container
-    $(window).bind('beforeunload', function()
-    {
+    $(window).bind('beforeunload', function () {
         $.ajax({
-	        url: "resetContainer",
-	        type: "GET",
+            url: "resetContainer",
+            type: "GET",
         });
     });
 </script>

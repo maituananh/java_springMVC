@@ -16,7 +16,10 @@
 						<strong class="card-title">MAIN INFORMATION OF THE PRODUCT</strong>
 					</div>
 					<div class="card-body card-block">
-						<form action="#" method="post" class="form-horizontal main-form">
+						<form method="post" class="form-horizontal main-form">
+							<div style="display: none">
+								<input id="idProduct" value="${infoProductDetails.getIdProduct()}">
+							</div>
 							<div class="row form-group">
 								<div class="col col-md-4"><input type="text" placeholder="Code"
 								                                 value="${infoProductDetails.getCodesProduct()}"
@@ -54,7 +57,8 @@
 								<div class="col col-md-6"><input type="button" value="EDIT"
 								                                 class="form-control btn btn-info edit-main"></div>
 								<div class="col col-md-6"><input type="button" value="DELETE"
-								                                 class="form-control btn btn-danger delete-main"></div>
+								                                 class="form-control btn btn-danger deleteProduct-main">
+								</div>
 							</div>
 						</form>
 					</div>
@@ -78,12 +82,16 @@
 						<div class="card-body">
 							<div id="pay-invoice">
 								<div class="card-body card-block">
-									<form action="#" method="post" class="form-horizontal"
+									<form method="post" class="form-horizontal"
 									      id="formId${productDetails.getIdProductDetails()}">
+										<div style="display: none">
+											<input value="${productDetails.getIdProductDetails()}"
+											       id="idDetailProduct-${productDetails.getIdProductDetails()}">
+										</div>
 										<div class="row form-group">
 											<div class="col col-md-12">
 												<div class="col col-md-6" style="float: left">
-													<img style="float: left" class="avatar"
+													<img style="float: left" class="avatar-${productDetails.getIdProductDetails()}"
 													     src="<c:url value="/resources/images/${productDetails.getImage().getPath()}"/>">
 												</div>
 												<div class="col col-md-6 input-right" style="float: left">
@@ -91,50 +99,85 @@
 														<div class="input-group-addon"><i
 																class="fa fa-sort-numeric-asc"></i></div>
 														<input type="text" name="input1-group1"
-														       placeholder="Input quality"
+														       id="quantity-${productDetails.getIdProductDetails()}"
+														       value="${productDetails.getQuality()}"
 														       class="form-control disabled">
 													</div>
 													<div class="input-group">
 														<div class="input-group-addon"><i class="fa fa-paint-brush"></i>
 														</div>
-														<select name="select" class="form-control disabled">
-															<option value="${productDetails.getColor().getIdColor()}">${productDetails.getColor().getNameColor()}</option>
-															<option value="1">Option #1</option>
+														<select name="select" class="form-control disabled"
+														        id="color-${productDetails.getIdProductDetails()}">
+															<option value="${productDetails.getColor().getIdColor()}"
+															        selected style="background: silver">
+																	${productDetails.getColor().getNameColor()}
+															</option>
+															<c:forEach items="${colorList}" var="colorLists">
+																<c:if test="${productDetails.getColor().getIdColor() != colorLists.getIdColor()}">
+																	<option value="${colorLists.getIdColor()}">
+																			${colorLists.getNameColor()}
+																	</option>
+																</c:if>
+															</c:forEach>
 														</select>
 													</div>
 													<div class="input-group">
 														<div class="input-group-addon"><i
-																class="fas fa-arrows"></i></div>
-														<select name="select" class="form-control disabled">
-															<option value="0">Please select size</option>
-															<option value="1">Option #1</option>
+																class="fa fa-arrows"></i></div>
+														<select name="select" class="form-control disabled"
+														        id="size-${productDetails.getIdProductDetails()}">
+															<option value="${productDetails.getSize().getIdSize()}"
+															        selected style="background: silver">
+																	${productDetails.getSize().getNumber()}
+															</option>
+															<c:forEach items="${sizeList}" var="sizeLists">
+																<c:if test="${productDetails.getSize().getIdSize() != sizeLists.getIdSize()}">
+																	<option value="${sizeLists.getIdSize()}">
+																			${sizeLists.getNumber()}
+																	</option>
+																</c:if>
+															</c:forEach>
 														</select>
 													</div>
 													<div class="input-group">
 														<div class="input-group-addon"><i class="fa fa-indent"></i>
 														</div>
-														<select name="select" class="form-control disabled">
-															<option value="0">Please select kind</option>
-															<option value="1">Option #1</option>
+														<select name="select" class="form-control disabled"
+														        id="kind-${productDetails.getIdProductDetails()}">
+															<option value="${productDetails.getKind().getIdKind()}"
+															        selected style="background: silver">
+																	${productDetails.getKind().getNameKind()}
+															</option>
+															<c:forEach items="${kindList}" var="kindLists">
+																<c:if test="${productDetails.getKind().getIdKind() != kindLists.getIdKind()}">
+																	<option value="${kindLists.getIdKind()}">
+																			${kindLists.getNameKind()}
+																	</option>
+																</c:if>
+															</c:forEach>
 														</select>
 													</div>
 													<div class="input-group">
 														<div class="input-group-addon"><i
 																class="fa fa-image"></i></div>
-														<input type="file" name="image"
+														<input type="file" name="image" id="file-${productDetails.getIdProductDetails()}"
+														       onClick="$(this).fileImage('${productDetails.getIdProductDetails()}');"
 														       class="form-control file-upload disabled">
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="row form-group">
-											<div class="col col-md-6"><input type="button" value="EDIT"
-											                                 onClick="$(this).editDetails('${productDetails.getIdProductDetails()}');"
-											                                 id="${productDetails.getIdProductDetails()}"
-											                                 class="form-control btn btn-info edit-details-"${productDetails.getIdProductDetails()}>
+											<div class="col col-md-6">
+												<input type="button" value="EDIT"
+												       onClick="$(this).editDetails('${productDetails.getIdProductDetails()}');"
+												       id="${productDetails.getIdProductDetails()}"
+												       class="form-control btn btn-info edit-details-${productDetails.getIdProductDetails()}">
 											</div>
-											<div class="col col-md-6"><input type="button" value="DELETE"
-											                                 class="form-control btn btn-danger delete-details-"${productDetails.getIdProductDetails()}>
+											<div class="col col-md-6">
+												<input type="button" value="DELETE"
+												       onClick="$(this).deleteDetails('${productDetails.getIdProductDetails()}');"
+												       class="form-control btn btn-danger delete-details-${productDetails.getIdProductDetails()}">
 											</div>
 										</div>
 									</form>
@@ -147,22 +190,8 @@
 		</div>
 	</div>
 </div>
-<script>
-    $(document).ready(function () {
-        var readURL = function (input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+<%--<script>--%>
+<%--    $(document).ready(function () {--%>
 
-                reader.onload = function (e) {
-                    $('.avatar').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".file-upload").on('change', function () {
-            readURL(this);
-        });
-    });//end
-</script>
+<%--    });//end--%>
+<%--</script>--%>
