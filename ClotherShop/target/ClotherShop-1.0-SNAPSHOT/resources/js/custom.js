@@ -641,8 +641,10 @@ $(document).ready(function () {
         var idColor = $("#formId" + id + " #color-" + id).val();
         var idSize = $("#formId" + id + " #size-" + id).val();
         var idKind = $("#formId" + id + " #kind-" + id).val();
-        var nameFile = $("#file-" + id).val();
-        var ChangeNameFile = nameFile.replace(/C:\\fakepath\\/i, '');
+        var nameFile = 1;
+        var ChangeNameFile = nameFile;
+            // nameFile.replace("C:\\fakepath\\", '');$("#avatar-" + id).attr('src');
+        alert("idProduct = " + idProduct + "idProductDetailVal = " + idProductDetailVal + "ChangeNameFile = " + ChangeNameFile);
         $.ajax({
             url: "UpdateProductDetail",
             type: "POST",
@@ -654,8 +656,10 @@ $(document).ready(function () {
                 size: idSize,
                 kind: idKind,
                 nameFile: ChangeNameFile
-            },success: function () {
+            },success: function (value) {
                 console.log("update success");
+            },error: function (e) {
+                console.log(e);
             }
         });
     }

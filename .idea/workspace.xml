@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="44c98d8c-6fab-4a2b-baf1-c259f91da8dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/ClotherShop/src/main/java/com/teambuild/clothershop/controller/ManageProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/src/main/java/com/teambuild/clothershop/controller/ManageProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/src/main/java/com/teambuild/clothershop/daoimpl/ManageProductDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/src/main/java/com/teambuild/clothershop/daoimpl/ManageProductDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/classes/META-INF/ClotherShop.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/classes/com/teambuild/clothershop/controller/ManageProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/classes/com/teambuild/clothershop/controller/ManageProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/classes/com/teambuild/clothershop/note/working.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/context/dispatcher-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/context/tiles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/exception/error404.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/exception/error500.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/adminLayout/footer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/adminLayout/header.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/adminLayout/layout.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/adminLayout/leftPanel.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/adminLayout/menu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/adminLayout/verificationLayout.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/banner.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/bannerPage.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/errorLayout/errorLayout403.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/footer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/header.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/layout.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/layoutPage.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/layoutsInclude/contentMenu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/layoutsInclude/slide.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/layouts/layoutsInclude/topMenu.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/addProduct.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/adminError403.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/adminLink/homeLink.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/adminLink/listUserLink.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/adminLink/profileLink.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/adminScript/homeScript.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/adminScript/listUserScript.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/editProductAdmin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/editProfileAdmin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/homeAdmin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/listProduct.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/listUser.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/profileAdmin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/admin/verification.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/checkOut.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/error403.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/pageDetails.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/views/pages/registered.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/cs-skin-elastic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/chosen/chosen-sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/chosen/chosen-sprite@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/chosen/chosen.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/chosen/chosen.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/datatable/buttons.bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/datatable/buttons.dataTables.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/datatable/dataTables.bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/lib/vector-map/jqvmap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/css/style.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/fonts/icomoon/icomoon.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/fonts/icomoon/icomoon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/fonts/icomoon/icomoon.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/fonts/icomoon/icomoon.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/fonts/icomoon/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/dashboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/chartjs-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/datatables-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/flot-chart-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/fullcalendar-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/gmap-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/peitychart-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/vector-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/init/weather-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/chosen/chosen.jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/chosen/chosen.jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/chosen/chosen.proto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/chosen/chosen.proto.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/buttons.bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/buttons.colVis.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/buttons.flash.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/buttons.html5.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/buttons.print.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/dataTables.bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/dataTables.buttons.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/datatables.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/jquery-1.12.4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/jquery.dataTables.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/jszip.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/pdfmake.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/data-table/vfs_fonts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/gmap/gmapApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/gmap/gmaps.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/lib/gmap/gmaps.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/vmap.sampledata.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/js/widgets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/scss/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/scss/style.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/assets/scss/style.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/cssVerification.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/admin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/64-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/avatar/64-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/logo.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/logo2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/admin/images/logoadmin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/avatar/AEAW7256.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/avatar/BAVU1890.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/avatar/BVLB3302.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/avatar/IMG_0028.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/avatar/IMG_0029.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/avatar/KLDC5664.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/coreSlider.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/flexslider.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/font-awesome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/jquery-ui.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/jstarbox.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/owl.carousel.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/css/datepicker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/css/datepicker.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/datepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/datepicker.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/dist/js/i18n/datepicker.zh.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/css/github-gist.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/img/en.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/img/promo-img-time.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/img/ru.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/index-ru.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/layout.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/mixins/example-code.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/mixins/example-content.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/mixins/example-inline.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/mixins/example.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/mixins/param-header.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/mixins/param.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/pages/index-ru.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/jade/pages/index.jade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/js/highlight.pack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/js/logger.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/js/navigation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/sass/_docs.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/sass/_reset.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/docs/sass/init.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/gulpfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/air-datepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/body.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/datepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/i18n/datepicker.zh.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/navigation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/js/timepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/sass/_datepicker-config.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/sass/cell.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/sass/datepicker.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/sass/navigation.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/src/sass/timepicker.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/static-server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tasks/css.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tasks/cssPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tasks/gzip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tasks/i18n.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tasks/jade.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tasks/js.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tests/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tests/specs/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tests/specs/events.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tests/specs/options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/tests/specs/static-methods.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/datapicker/air-datepicker/visual-tests.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/error/error403/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/12java_by_valazeroth_d41h268-1482496987555.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/38901047-java-wallpapers.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/45.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/52759697_2096720020613860_6706902628854398976_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/57246984_2273255749593602_628717284386406400_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/57319724_593046877858652_3333621188428562432_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/57382293_282418936014844_2511140199694598144_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/57411739_763930054001199_8602622561047543808_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/99710.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/AEAW7256.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/AFBS3247.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/AITZ7571.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/ALMU8700.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/APSU0400.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/AZDJ2023.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/BAVU1890.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/BQZD2669.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/BVLB3302.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/EJZJ0636.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/EMQO4880.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/FBIP5220.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/FCTH7572.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/Free-Download-1920x1080-Photos.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/GUHN3142.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/HLYT3071.JPEG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/IMG_0002.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/IMG_0004.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/IMG_0018.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/IMG_0072.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/IMG_0137.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/IMG_0174.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/LOGO.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/TKB 2019-2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/Welcome.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/arrow_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/arrow_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/avatar-cv.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/b1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/b2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/b3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/b4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/bag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/ban1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/banner-slider1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/banner-slider2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/banner-slider3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/card.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/circle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/city_spring_night_evening_lights_bridges_river_park_trees_flower_color_58320_1920x1080.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/close_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/default_image.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/do.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/i9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/icons1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/img-sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/img1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/img2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/img3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/img4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/java-logo-programming.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/java-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/l1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/l2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/l3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/l4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/l5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/l6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/men3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/menu1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/modules_spring.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p19.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p20.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p21.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p22.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p23.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p24.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p25.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p26.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p27.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p28.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p29.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p30.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/p9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/r.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/r1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/r2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/r3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/r4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/r5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/s9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/si.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/si1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/si2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/spring-overview-current.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/woo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/woo1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/woo2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/woo3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/images/woo4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/bootstrap-3.1.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/coreSlider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/imagezoom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery-ui.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery.flexslider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery.jscrollpane.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery.mousewheel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jquery.mycart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/jstarbox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/owl.carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/responsiveslides.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/ClotherShop-1.0-SNAPSHOT/resources/js/simpleCart.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/target/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClotherShop/target/classes/com/teambuild/clothershop/controller/ManageProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ClotherShop/target/classes/com/teambuild/clothershop/controller/ManageProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CrudUserMaven/CrudUserMaven.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\Projects_all\java_springMVC\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1UKSlxQAXnAC6ttt7rxjyg3IfpD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44c98d8c-6fab-4a2b-baf1-c259f91da8dc" name="Default Changelist" comment="" />
+      <created>1575103948557</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575103948557</updated>
+      <workItem from="1575103955197" duration="106000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

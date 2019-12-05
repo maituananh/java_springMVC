@@ -38,8 +38,10 @@ public class ManageProductDaoImpl implements ManageProductDao {
 
     @Override
     public Product selectProductById(int id) {
-        Session session = sessionFactory.openSession();
-        return session.find(Product.class, id);
+        Session session = sessionFactory.getCurrentSession();
+        Product product = session.find(Product.class, id);
+        session.clear();
+        return product;
     }
 
     @Override
@@ -121,7 +123,13 @@ public class ManageProductDaoImpl implements ManageProductDao {
     }
 
     @Override
-    public void updateProductDetail(ProductDetails productDetails) {
+    public ProductDetails getProductDetailById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.find(ProductDetails.class, id);
+    }
+
+    @Override
+    public void updateProductDetailById(ProductDetails productDetails) {
         Session session = sessionFactory.getCurrentSession();
         session.update(productDetails);
     }

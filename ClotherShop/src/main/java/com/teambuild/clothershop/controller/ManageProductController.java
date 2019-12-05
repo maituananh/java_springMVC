@@ -371,16 +371,12 @@ public class ManageProductController {
 
     @PostMapping("UpdateProductDetail")
     @ResponseBody
-    public void updateProduct(@RequestParam String idProduct, @RequestParam String idDetail, @RequestParam String quantity,
+    public String updateProduct(@RequestParam String idDetail, @RequestParam String quantity,
                               @RequestParam String color, @RequestParam String size, @RequestParam String kind,
                               @RequestParam String nameFile) {
-        ProductDetails productDetails = new ProductDetails();
-        productDetails.setIdProductDetails(Integer.parseInt(idDetail.trim()));
-        productDetails.setQuality(Integer.parseInt(quantity.trim()));
+        ProductDetails productDetails = manageProductServiceImpl.getProductDetailById(Integer.parseInt(idDetail.trim()));
 
-        Product product = new Product();
-        product.setIdProduct(Integer.parseInt(idProduct.trim()));
-        productDetails.setProduct(product);
+        productDetails.setQuality(Integer.parseInt(quantity.trim()));
 
         Color setIdColor = new Color();
         setIdColor.setIdColor(Integer.parseInt(color.trim()));
@@ -397,6 +393,10 @@ public class ManageProductController {
         Image setUrlImage = new Image();
         setUrlImage.setPath(nameFile.trim());
         productDetails.setImage(setUrlImage);
-        manageProductServiceImpl.updateProductDetail(productDetails);
+
+        System.out.println("idProduct = " + productDetails.getProduct().getIdProduct() + " idDetail = " + productDetails.getIdProductDetails() + " quantity = " + productDetails.getQuality());
+
+        manageProductServiceImpl.updateProductDetailById(productDetails);
+        return "";
     }
 }

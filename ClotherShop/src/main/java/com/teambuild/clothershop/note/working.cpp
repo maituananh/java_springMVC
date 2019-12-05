@@ -28,10 +28,15 @@
     - cần lấy lại dữ liệu của 2 nút edit và delete (đã fix được)
     - bug reload trang admin-addProduct nhưng container vẫn lưu giá trị (đã fix)
 ===========================================//// tạm thời xong trang add product ////===================================
-====== tạm thời dừng code để học tiếng anh đến ngày 3/11 ======
+                        ====== tạm thời dừng code để học tiếng anh đến ngày 3/11 ======
 5/11: chỉnh sửa giao diện
 6/11: xóa chi tiết và xóa sản phẩm
 7/11: đang lỗi khi cập nhập chi tiết sản phẩm, idProduct đang null
+
+========================================= // bận công việc thực tập // ====================================================
+
+5/12: đã fix được phần update chi tiết sản phẩm
+
 
 
 

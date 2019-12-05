@@ -85,8 +85,13 @@ public class ManageProductServiceImpl implements ManageProductService {
     }
 
     @Override
-    public void updateProductDetail(ProductDetails productDetails) {
-        manageProductDaoImpl.updateProductDetail(productDetails);
+    public ProductDetails getProductDetailById(int id) {
+        return manageProductDaoImpl.getProductDetailById(id);
+    }
+
+    @Override
+    public void updateProductDetailById(ProductDetails productDetails) {
+        manageProductDaoImpl.updateProductDetailById(productDetails);
     }
 
     @Override

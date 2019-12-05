@@ -635,27 +635,29 @@ $(document).ready(function () {
     function cssEditDetails(id) {
         $("#formId" + id + " .disabled").prop("disabled", true);
         $(".edit-details-" + id).removeClass("btn-success").addClass("btn-info").val("EDIT");
-        var idProduct = $("#idProduct").val();
         var idProductDetailVal = $("#formId" + id + " #idDetailProduct-" + id).val();
         var quantityVal = $("#formId" + id + " #quantity-" + id).val();
         var idColor = $("#formId" + id + " #color-" + id).val();
         var idSize = $("#formId" + id + " #size-" + id).val();
         var idKind = $("#formId" + id + " #kind-" + id).val();
-        var nameFile = $("#file-" + id).val();
-        var ChangeNameFile = nameFile.replace(/C:\\fakepath\\/i, '');
+        var nameFile = $("#avatar-" + id).attr('src');
+        var ChangeNameFile = nameFile;
+            // nameFile.replace("C:\\fakepath\\", '');
+        alert(ChangeNameFile);
         $.ajax({
             url: "UpdateProductDetail",
             type: "POST",
             data: {
-                idProduct: idProduct,
                 idDetail: idProductDetailVal,
                 quantity: quantityVal,
                 color: idColor,
                 size: idSize,
                 kind: idKind,
                 nameFile: ChangeNameFile
-            },success: function () {
+            },success: function (value) {
                 console.log("update success");
+            },error: function (e) {
+                console.log(e);
             }
         });
     }

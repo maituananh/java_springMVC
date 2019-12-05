@@ -22,7 +22,8 @@ public interface ManageProductService {
 
     void deleteProduct(int id);
     void deleteProductDetail(int id);
-    void updateProductDetail(ProductDetails productDetails);
+    ProductDetails getProductDetailById(int id);
+    void updateProductDetailById(ProductDetails productDetails);
 
     List recentProducts(int start, int end);
 }

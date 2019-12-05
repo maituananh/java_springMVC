@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+<!--    <bean id="helloWorld" class="vn.viettuts.example.HelloWorld">-->
+<!--        <property name="message1" value="Hello World!" />-->
+<!--        <property name="message2" value="Hello Second World!" />-->
+<!--    </bean>-->
+ 
+<!--    <bean id=" helloVietnam" class="vn.viettuts.example.HelloVietnam">-->
+<!--        <property name="message1" value="Hello Vietnam" />-->
+<!--        <property name="message3" value="Welcome to Vietnam!" />-->
+<!--        <property name="helloWorld" value="helloWorld"/>-->
+<!--    </bean>-->
+    
+    <bean id=" helloVietnamConstructor" class="vn.viettuts.example.HelloVietnam">
+        <constructor-arg name="message1" value="tao là ms1"/>
+        <constructor-arg name="message2" value="tao là ms2"/>
+        <constructor-arg name="message3" value="tao là ms3"/>
+        <constructor-arg name="helloWorld" value="helloWorld"/>
+    </bean>
+    
+    <bean id="helloWorld" class="vn.viettuts.example.HelloWorld">
+        <property name="message1" value="ms 1 của helloWorld"/>
+        <property name="message2" value="ms 2 của helloWorld"/>
+    </bean>
+</beans>
