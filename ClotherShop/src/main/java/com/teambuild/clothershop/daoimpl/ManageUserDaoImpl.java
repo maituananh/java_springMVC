@@ -32,7 +32,7 @@ public class ManageUserDaoImpl implements ManageUserDao {
     }
 
     @Override
-    public List listAllUser() {
+    public List<User> listAllUser() {
         String hql = "FROM user";
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery(hql).getResultList();

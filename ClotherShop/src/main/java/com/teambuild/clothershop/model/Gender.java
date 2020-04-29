@@ -18,6 +18,14 @@ public class Gender {
         return idGender;
     }
 
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
+    }
+
     public void setIdGender(int idGender) {
         this.idGender = idGender;
     }

@@ -1,8 +1,8 @@
 package com.teambuild.clothershop.dao;
 
 
-import java.util.List;
+import com.teambuild.clothershop.model.User;
 
 public interface LoginDao {
-    List singleUserList(String userName, String password);
+    User findByUsernameAndPassword(String userName, String password);
 }

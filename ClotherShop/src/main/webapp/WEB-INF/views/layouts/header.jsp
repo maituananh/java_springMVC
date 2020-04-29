@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="header">
     <div class="header-top">
         <div class="container">
             <div class="top-left">
-                <a href="#"> Help <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> +0123-456-789</a>
+                <a href="#"> Help <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> +077-434-9901</a>
             </div>
             <div class="top-right">
             <%--       top menu         --%>
@@ -48,14 +49,11 @@
                         <a href="checkout.html">
                             <h3>
                                 <div class="total">
-                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity"
-                                                                                  class="simpleCart_quantity"></span>
-                                    items)
+                                    (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>${getAllCart.size()})
                                 </div>
-                                <img src="images/bag.png" alt=""/>
+                                <img src="<c:url value="/resources/images/bag.png"/>" alt=""/>
                             </h3>
                         </a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
                         <div class="clearfix"></div>
                     </div>
                 </div>

@@ -2,6 +2,8 @@ package com.teambuild.clothershop.controller;
 
 import com.teambuild.clothershop.model.*;
 import com.teambuild.clothershop.serviceimpl.ManageProductServiceImpl;
+import com.teambuild.clothershop.serviceimpl.ManageUserServiceImpl;
+import com.teambuild.clothershop.utils.GetTimeAndDay;
 import com.teambuild.clothershop.validate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -19,6 +22,9 @@ import java.util.*;
 public class ManageProductController {
     @Autowired
     ManageProductServiceImpl manageProductServiceImpl;
+
+    @Autowired
+    ManageUserServiceImpl manageUserServiceImpl;
 
     // đối tượng được lưu thông tin chính
     private Product insertProduct = new Product();
@@ -41,7 +47,7 @@ public class ManageProductController {
     @PostMapping("checkInfoProduct")
     @ResponseBody
     public String checkInfoProduct(@RequestParam String code, @RequestParam String name, @RequestParam String price,
-                                   @RequestParam String describe, @RequestParam String producer) {
+                                   @RequestParam String describe, @RequestParam String producer, @RequestParam String idUser) {
         reset();
         boolean check = false;
         if (CodesValidate.codesValidate(code)) {
@@ -64,15 +70,14 @@ public class ManageProductController {
                     } else {
                         if (EmptyValidate.emptyValidate(describe)) {
                             if (EmptyValidate.emptyValidate(producer)) {
-                                // đã vượt qua all điều kiện
-                                // lưu all thông tin chính của sản phẩm vào đối tượng insertProduct
-                                // thông tin chính của sản phẩm
                                 this.insertProduct.setCodesProduct(code.trim().toUpperCase());
                                 this.insertProduct.setNameProduct(name.trim());
                                 this.insertProduct.setPrice(Double.parseDouble(price.trim()));
                                 this.insertProduct.setDescribeProduct(describe);
-                                this.insertProduct.setCreated_time(java.time.LocalTime.now().toString());
-                                this.insertProduct.setCreated_date(java.time.LocalDate.now().toString());
+                                User user = manageUserServiceImpl.findID(Integer.parseInt(idUser.trim()));
+                                this.insertProduct.setUser(user);
+                                this.insertProduct.setCreated_time(GetTimeAndDay.getTime());
+                                this.insertProduct.setCreated_date(GetTimeAndDay.getDay());
                                 this.insertProduct.setUpdated_time("0");
                                 this.insertProduct.setUpdated_date("0");
                                 Producer insertProducer = new Producer();
@@ -101,13 +106,11 @@ public class ManageProductController {
     @PostMapping("save-product")
     @ResponseBody
     public String saveProduct(@RequestParam String color, @RequestParam String kind, @RequestParam String size,
-                              @RequestParam String quality, @RequestParam String file) {
+                              @RequestParam String quality, @RequestParam String idUser, @RequestParam String file) {
         String check = findProductDetails(color, size, kind, quality, file);
         if (check.equals("true")) {
-            // lấy tên file
-            String fileName = file.substring(12);
             // lưu chi tiết sản phẩm vào set
-            ProductDetails productDetails = objectProductDetails(color, size, kind, quality, fileName);
+            ProductDetails productDetails = objectProductDetails(color, size, kind, quality, idUser, this.fileName);
             this.set.add(productDetails);
             // đã lưu vào set
             this.insertProduct.setProductDetails(this.set);
@@ -120,12 +123,12 @@ public class ManageProductController {
     // update vào khung chứa
     @PostMapping("update-product-at-add")
     @ResponseBody
-    public String updateProductAtAdd(@RequestParam String id, @RequestParam String color, @RequestParam String kind, @RequestParam String size,
-                                     @RequestParam String quality, @RequestParam String file) {
+    public String updateProductAtAdd(@RequestParam String id, @RequestParam String color, @RequestParam String kind,
+                                     @RequestParam String size, @RequestParam String quality, @RequestParam String idUser, @RequestParam String file) {
         String check = findProductDetails(color, size, kind, quality, file);
         if (check.equals("true")) {
             int idReal = Integer.parseInt(id) - 1;
-            ProductDetails productDetailsNew = objectProductDetails(color, size, kind, quality, file);
+            ProductDetails productDetailsNew = objectProductDetails(color, size, kind, quality, idUser, file);
             List<ProductDetails> productDetailsList = new ArrayList<>();
             productDetailsList.addAll(set);
             productDetailsList.set(idReal, productDetailsNew);
@@ -156,7 +159,7 @@ public class ManageProductController {
         }
     }
 
-    private ProductDetails objectProductDetails(String color, String size, String kind, String quality, String image) {
+    private ProductDetails objectProductDetails(String color, String size, String kind, String quality, String idUser, String image) {
         Color insertColor = new Color();
         insertColor.setIdColor(Integer.parseInt(color.trim()));
 
@@ -171,6 +174,9 @@ public class ManageProductController {
 
         ProductDetails productDetails = new ProductDetails();
         productDetails.setQuality(Integer.parseInt(quality.trim()));
+
+        User user = new User();
+        user.setIdUser(Integer.parseInt(idUser));
 
         productDetails.setColor(insertColor);
         productDetails.setKind(insertKind);
@@ -221,20 +227,18 @@ public class ManageProductController {
     @Autowired
     ServletContext context;
 
+    public static String fileName;
+
     // lưu file vào hệ thống
     @PostMapping("saveAndMoveFile")
     @ResponseBody
     public String moveFile(MultipartHttpServletRequest multipartHttpServletRequest) {
         String path_save_file = context.getRealPath("/resources/images/");
-        String save_project = path_save_file.substring(0, path_save_file.indexOf("target\\"));
         Iterator<String> stringIterator = multipartHttpServletRequest.getFileNames();
         MultipartFile multipartFile = multipartHttpServletRequest.getFile(stringIterator.next());
-        File file = new File(path_save_file + multipartFile.getOriginalFilename());// đường dẫn lưu trên save
-        File fileSave_project = new File(save_project + "src/main/webapp/resources/images/" +
-                multipartFile.getOriginalFilename()); // đường dẫn lưu vào thư mục gốc trong dự án
+        File file = new File(path_save_file + multipartFile.getOriginalFilename());// đường dẫn lưu trên server
+        this.fileName = multipartFile.getOriginalFilename();
         try {
-//            multipartFile.transferTo(fileSave_project);
-//            System.out.println("đường dẫn file " + fileSave_project);
             multipartFile.transferTo(file);
             return "true";
         } catch (IOException e) {
@@ -250,63 +254,50 @@ public class ManageProductController {
         int id; // id of items
         switch (nameItems) {
             case "KIND":
-                List<Kind> kindList = manageProductServiceImpl.getAllKind();
-                for (Kind k : kindList) {
-                    if (k.getNameKind().toUpperCase().equals(item.trim().toUpperCase())) {
-                        return "Kind already exist";
-                    }
+                if (manageProductServiceImpl.findByItem(item.trim(), "KIND") == null) {
+                    Kind kind = new Kind();
+                    kind.setNameKind(item.trim().toUpperCase());
+                    id = manageProductServiceImpl.addKind(kind);
+                    return id + "+KIND";
+                } else {
+                    return "Kind already exist";
                 }
-                Kind kind = new Kind();
-                kind.setNameKind(item.trim().toUpperCase());
-                id = manageProductServiceImpl.addKind(kind);
-                return id + "+KIND";
-
             case "COLOR":
-                List<Color> colorList = manageProductServiceImpl.getAllColor();
-                for (Color c : colorList) {
-                    if (c.getNameColor().trim().toUpperCase().equals(item.trim().toUpperCase())) {
-                        return "Color already exist";
-                    }
+                if (manageProductServiceImpl.findByItem(item.trim(), "COLOR") == null) {
+                    Color color = new Color();
+                    color.setNameColor(item.trim().toUpperCase());
+                    id = manageProductServiceImpl.addColor(color);
+                    return id + "+COLOR";
+                } else {
+                    return "Color already exist";
                 }
-                Color color = new Color();
-                color.setNameColor(item.trim().toUpperCase());
-                id = manageProductServiceImpl.addColor(color);
-                return id + "+COLOR";
-
             case "SIZE":
-                List<Size> sizeList = manageProductServiceImpl.getAllSize();
-                int sizeParseInt;
                 try {
-                    sizeParseInt = Integer.parseInt(item.trim());
-                    for (Size s : sizeList) {
-                        if (s.getNumber() == sizeParseInt) {
-                            return "Size already exist";
-                        }
+                    if (manageProductServiceImpl.findByItem(item.trim(), "SIZE") == null) {
+                        Size size = new Size();
+                        size.setNumber(Integer.parseInt(item.trim()));
+                        id = manageProductServiceImpl.addSize(size);
+                        return id + "+SIZE";
+                    } else {
+                        return "Size already exist";
                     }
-                    Size size = new Size();
-                    size.setNumber(sizeParseInt);
-                    id = manageProductServiceImpl.addSize(size);
-                    return id + "+SIZE";
                 } catch (NumberFormatException e) {
                     return "You enter wrong number format";
                 }
-
             case "PRODUCER":
-                List<Producer> producerList = manageProductServiceImpl.getAllProducer();
                 String splitName = item.substring(0, item.indexOf("/"));
                 String splitAddress = item.substring(item.indexOf("/") + 1);
-                if (SpecialCharactersValidate.specialCharactersValidate(splitName) &&
-                        SpecialCharactersValidate.specialCharactersValidate(splitAddress)) {
-                    for (Producer producer : producerList) {
-                        if (producer.getNameProducer().toUpperCase().equals(splitName.toUpperCase())) {
-                            return "Name Producer already exist";
-                        }
+                System.out.println(splitName + splitAddress);
+                if (!SpecialCharactersValidate.specialCharactersValidate(splitName)) {
+                    if (manageProductServiceImpl.findByItem(splitName, "PRODUCER") == null) {
+                        Producer producer1 = new Producer();
+                        producer1.setNameProducer(splitName);
+                        producer1.setAddress(splitAddress);
+                        id = manageProductServiceImpl.addProducer(producer1);
+                        return id + "+PRODUCER";
+                    } else {
+                        return "Name Producer already existed";
                     }
-                    Producer producer1 = new Producer();
-                    producer1.setNameProducer(splitName);
-                    producer1.setAddress(splitAddress);
-                    id = manageProductServiceImpl.addProducer(producer1);
-                    return id + "+PRODUCER";
                 } else {
                     return "You don't write special characters";
                 }
@@ -318,7 +309,7 @@ public class ManageProductController {
     @PostMapping("saveItem")
     @ResponseBody
     public String saveItem(@RequestParam String header, @RequestParam String item) {
-        String subString = header.trim().toUpperCase().substring(7); // do có chữ new trước nên phải cắt
+        String subString = header.trim().toUpperCase().substring(7); // do có chữ new trước nên cắt
         if (subString.trim().equals("KIND")) {
             return findItemsExist("KIND", item);
         } else if (subString.trim().equals("COLOR")) {
@@ -371,9 +362,9 @@ public class ManageProductController {
 
     @PostMapping("UpdateProductDetail")
     @ResponseBody
-    public String updateProduct(@RequestParam String idDetail, @RequestParam String quantity,
-                              @RequestParam String color, @RequestParam String size, @RequestParam String kind,
-                              @RequestParam String nameFile) {
+    public String updateProductDetail(@RequestParam String idDetail, @RequestParam String quantity,
+                                @RequestParam String color, @RequestParam String size,
+                                @RequestParam String kind) {
         ProductDetails productDetails = manageProductServiceImpl.getProductDetailById(Integer.parseInt(idDetail.trim()));
 
         productDetails.setQuality(Integer.parseInt(quantity.trim()));
@@ -391,12 +382,87 @@ public class ManageProductController {
         productDetails.setKind(setIdKind);
 
         Image setUrlImage = new Image();
-        setUrlImage.setPath(nameFile.trim());
+        setUrlImage.setPath(this.fileName);
         productDetails.setImage(setUrlImage);
-
-        System.out.println("idProduct = " + productDetails.getProduct().getIdProduct() + " idDetail = " + productDetails.getIdProductDetails() + " quantity = " + productDetails.getQuality());
-
         manageProductServiceImpl.updateProductDetailById(productDetails);
         return "";
+    }
+
+    @GetMapping("getAllCartDetailsByIdUser")
+    public String getAllCartDetailsByIdUser(ModelMap modelMap, String idUser) {
+        List<CartDetails> cartDetailsList = null;
+        if (idUser != null) {
+            System.out.println("idUser: " + idUser);
+            User user = manageUserServiceImpl.findID(Integer.parseInt(idUser.trim()));
+//        User user = (User)session.getAttribute("userSession");
+            Cart cart = manageProductServiceImpl.findIdUserTableCart(user.getIdUser());
+            System.out.println("cart " + cart.getIdCart());
+            CartDetails cartDetails = (CartDetails) cart.getCartDetails();
+            cartDetailsList = manageProductServiceImpl.getAllCartDT(cartDetails);
+            for (int i = 0; i < cartDetailsList.size(); i++) {
+                System.out.println(cartDetailsList.get(i).getIdCartDetails());
+            }
+        }
+        modelMap.addAttribute("getAllCartDetailsByIdUser", cartDetailsList);
+        return "checkOut";
+    }
+
+    @PostMapping("admin-addCart")
+    @ResponseBody
+    public String addCart(@RequestParam String idProductDetails, @RequestParam String idUser) {
+        if (idProductDetails.isEmpty() || idUser.isEmpty()) {
+            return "false";
+        }
+        int parseInt_IdUser = Integer.parseInt(idUser.trim());
+        int parseInt_IdProductDetails = Integer.parseInt(idProductDetails.trim());
+        ProductDetails productDetails = manageProductServiceImpl.getProductDetailById(parseInt_IdProductDetails);
+        Cart idUserInTbCart = manageProductServiceImpl.findIdUserTableCart(parseInt_IdUser);
+        System.out.println("id cart = " + idUserInTbCart.getIdCart());
+        if (idUserInTbCart == null) { // if user have not cart -> new cart
+            Cart cart = new Cart();
+            Set<CartDetails> cartDetailsSet = new HashSet();
+
+            CartDetails cartDetails = new CartDetails();
+            cartDetails.setIdProductDetails_CD(productDetails);
+            cartDetails.setQuantity(1);
+            cartDetails.setPrice(productDetails.getProduct().getPrice());
+
+            User user = manageUserServiceImpl.findID(Integer.parseInt(idUser));
+            cart.setIdUser(user);
+
+            cart.setCartDetails(cartDetailsSet);
+            cart.setTotalPrice(productDetails.getProduct().getPrice());
+            cartDetails.setIdCart_CD(cart);
+
+            cartDetailsSet.add(cartDetails);
+            return String.valueOf(manageProductServiceImpl.addCart(cart));
+        } else { // if user have cart -> handle table cartDetails
+            CartDetails checkIdProductDetails = manageProductServiceImpl.findIdPDTAndIDUSTblCartDT(parseInt_IdProductDetails, idUserInTbCart.getIdCart());
+            if (checkIdProductDetails != null) { // update quantity product DT
+                CartDetails cartDetails = checkIdProductDetails;
+                cartDetails.setQuantity(checkIdProductDetails.getQuantity() + 1);
+                manageProductServiceImpl.updateQuantityInProductDT(cartDetails);
+                idUserInTbCart.setTotalPrice(getTotalPriceInCDT(cartDetails));
+//                return String.valueOf(manageProductServiceImpl.updatePriceOfCart(idUserInTbCart));
+            } else { // insert new product DT
+                CartDetails cartDetails = new CartDetails();
+                cartDetails.setIdCart_CD(idUserInTbCart);
+                cartDetails.setPrice(productDetails.getProduct().getPrice());
+                cartDetails.setQuantity(1);
+                cartDetails.setIdProductDetails_CD(productDetails);
+                manageProductServiceImpl.addCartDetails(cartDetails);
+                idUserInTbCart.setTotalPrice(getTotalPriceInCDT(cartDetails));
+            }
+            return String.valueOf(manageProductServiceImpl.updatePriceOfCart(idUserInTbCart)); // đang lỗi cập nhập tổng tiền
+        }
+    }
+
+    private Double getTotalPriceInCDT(CartDetails cartDetails) {
+        List <CartDetails> cartDetailsList = manageProductServiceImpl.getAllCartDT(cartDetails);
+        Double total = 0.0;
+        for (int i = 0; i < cartDetailsList.size(); i++) {
+            total += cartDetailsList.get(i).getQuantity() * cartDetailsList.get(i).getPrice();
+        }
+        return total;
     }
 }

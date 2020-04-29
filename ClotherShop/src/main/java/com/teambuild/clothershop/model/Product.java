@@ -18,15 +18,13 @@ public class Product {
     private String created_date;
     private String created_time;
 
-    // nhà sản xuất CHƯA LÀM
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProducer_Product")
     private Producer producer;
 
-    // người thêm sp CHƯA LÀM
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser_Product")
-    private User user;
+    private User user; // id user create product
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduct_DT")

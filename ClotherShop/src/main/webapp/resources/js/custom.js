@@ -11,13 +11,17 @@ $(document).ready(function () {
                 password: pass
             },
             success: function (value) {
-                var url = window.location.href;
-                if (value == "admin") {
-                    var changeUrlAdmin = url.replace("login", "admin-verification");
-                    window.location = changeUrlAdmin;
-                } else if (value == "user") {
-                    var changeUrlUser = url.replace("login", "home");
-                    window.location = changeUrlUser;
+                if (value !== null && value !== undefined && value !== '') {
+                    let idUser = parseInt(value);
+                    let url = window.location.href;
+                    if (idUser == 1) {
+                        let changeUrlAdmin = url.replace("login", "admin-verification");
+                        window.location = changeUrlAdmin;
+                    } else {
+                        let changeUrlUser = url.replace("login", "home");
+                        window.location = changeUrlUser;
+                    }
+                    localStorage.setItem('ID_USER', value);
                 } else if (value == "false") {
                     $("#mess").text("User account or password incorrect");
                 } else if (value == "null") {
@@ -73,6 +77,7 @@ $(document).ready(function () {
         var priceVal = $("#price").val();
         var describeVal = $("#describe").val();
         var producerVal = $("#Producer").val();
+        console.log(localStorage.getItem("ID_USER"));
         $.ajax({
             url: "checkInfoProduct",
             type: "POST",
@@ -81,7 +86,8 @@ $(document).ready(function () {
                 name: nameVal,
                 price: priceVal,
                 describe: describeVal,
-                producer: producerVal
+                producer: producerVal,
+                idUser: localStorage.getItem("ID_USER"),
             },
             success: function (value) {
                 if (value != "true") {
@@ -351,6 +357,7 @@ $(document).ready(function () {
 
     // lưu file ngay sau khi chọn
     var files = [];
+
     function saveFile(event) {
         files = event.target.files;
         var forms = new FormData();
@@ -364,6 +371,7 @@ $(document).ready(function () {
             contentType: false,
             data: forms,
             success: function (value) {
+            	console.log(value);
                 if (value != "true") {
                     console.log("handle file fail")
                 } else {
@@ -393,6 +401,7 @@ $(document).ready(function () {
                 kind: kindVal,
                 size: sizeVal,
                 quality: qualityVal,
+                idUser: localStorage.getItem('ID_USER'),
                 file: fileVal
             },
             success: function (value) {
@@ -548,6 +557,7 @@ $(document).ready(function () {
                 size: sizeVal,
                 kind: kindVal,
                 quality: qualityVal,
+                idUser: localStorage.getItem('ID_USER'),
                 file: nameFile,
             },
             success: function (value) {
@@ -611,6 +621,7 @@ $(document).ready(function () {
                         effectiveProductMain();
                         emptyProductMain();
                     }
+                    setTimeout(function () {location.reload();}, 1500);
                 }
             });
         }
@@ -640,10 +651,14 @@ $(document).ready(function () {
         var idColor = $("#formId" + id + " #color-" + id).val();
         var idSize = $("#formId" + id + " #size-" + id).val();
         var idKind = $("#formId" + id + " #kind-" + id).val();
-        var nameFile = $("#avatar-" + id).attr('src');
-        var ChangeNameFile = nameFile;
-            // nameFile.replace("C:\\fakepath\\", '');
-        alert(ChangeNameFile);
+        var nameFile = $(".avatar-" + id).attr('src');
+        // alert(nameFile);
+        // var ChangeNameFile = "";
+        // if (nameFile.startsWith("/ClotherShop_war_exploded/")){
+        //     ChangeNameFile = nameFile.replace("/ClotherShop_war_exploded/resources/images/", '');
+        // } else {
+        //     ChangeNameFile = nameFile.replace("resources/images/", '');
+        // }
         $.ajax({
             url: "UpdateProductDetail",
             type: "POST",
@@ -653,7 +668,6 @@ $(document).ready(function () {
                 color: idColor,
                 size: idSize,
                 kind: idKind,
-                nameFile: ChangeNameFile
             },success: function (value) {
                 console.log("update success");
             },error: function (e) {
@@ -668,7 +682,9 @@ $(document).ready(function () {
             saveFile(event);
             var nameFile = $("#file-" + id).val();
             var ChangeNameFile = nameFile.replace(/C:\\fakepath\\/i, '');
-            $(".avatar-" + id).attr("src", "resources/images/" + ChangeNameFile);
+            setTimeout(function () {
+                $(".avatar-" + id).attr("src", "resources/images/" + ChangeNameFile);
+            }, 1500);
         });
     };
 
@@ -713,8 +729,65 @@ $(document).ready(function () {
             type: "POST",
             data: {
                 id: idVal,
-            },});
+            },
+        });
         location.reload();
     };
 
+    // handle cart
+    $.fn.addCart = function (id) {
+        if (localStorage.getItem("ID_USER") == null) {
+            let url = window.location.href;
+            let newURL = url.substring(0, url.indexOf("productDetails"));
+            console.log(newURL + "login");
+            window.location = newURL + "/login";
+        } else {
+            $.ajax({
+                url: "admin-addCart",
+                type: "POST",
+                data: {
+                    idProductDetails: id,
+                    idUser: localStorage.getItem("ID_USER"),
+                },
+                success: function (event) {
+                    console.log(event);
+                },
+                error: function () {}
+            })
+        }
+    };
+
+    $("#logout").click(function () {
+        $.ajax({
+            url: "logout",
+            type: "GET",
+            success: function () {
+                localStorage.setItem("ID_USER", "");
+                let url = window.location.href;
+                let newURL = url.substring(0, url.lastIndexOf("/"));
+                console.log(newURL + "/home");
+                window.location = newURL + "/home";
+            },
+            error: function () {
+                console.log("Log-out Fail");
+            }
+        })
+    });
+
+    $("#checkOut").click(function () {
+        alert("check out");
+        $.ajax({
+            url: "getAllCartDetailsByIdUser",
+            type: "GET",
+            data: {
+                idUser: localStorage.getItem("ID_USER")
+            },
+            success: function () {
+                console.log("redirect cart");
+            },
+            error: function () {
+                console.log("checkOut Fail");
+            }
+        })
+    })
 })// end

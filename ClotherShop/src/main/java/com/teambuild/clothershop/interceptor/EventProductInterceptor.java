@@ -30,6 +30,9 @@ public class EventProductInterceptor implements HandlerInterceptor {
                 break;
             // lấy sản phẩm bán chạy nhất 4-8 cái
         }
+        // lấy sản phẩm có trong giỏ hàng
+        List<Product> getAllCart = manageProductServiceImpl.getAllCart();
+        request.setAttribute("getAllCart", getAllCart);
         return true;
     }
 

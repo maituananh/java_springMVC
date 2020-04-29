@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -107,6 +108,25 @@ public class ManageProductDaoImpl implements ManageProductDao {
     }
 
     @Override
+    public Object findByItem(String nameItem, String typeItem) {
+        Session session = sessionFactory.openSession();
+        if (typeItem.equals("SIZE")) {
+            String sqlSize = "FROM size where number = :key";
+            return session.createQuery(sqlSize).setParameter("key", nameItem).getSingleResult();
+        } else if (typeItem.equals("COLOR")) {
+            String sqlColor = "FROM color where nameColor = :key";
+            return session.createQuery(sqlColor).setParameter("key", nameItem).getSingleResult();
+        } else if (typeItem.equals("KIND")) {
+            String sqlKind = "FROM kind where nameKind = :key";
+            return session.createQuery(sqlKind).setParameter("key", nameItem).getSingleResult();
+        } else if (typeItem.equals("PRODUCER")) {
+            String sqlProducer = "FROM producer where nameProducer = :key";
+            return session.createQuery(sqlProducer).setParameter("key", nameItem).getSingleResult();
+        }
+        return null;
+    }
+
+    @Override
     public void deleteProduct(int id) {
         Session session = sessionFactory.getCurrentSession();
         Product product = new Product();
@@ -141,5 +161,83 @@ public class ManageProductDaoImpl implements ManageProductDao {
         query.setFirstResult(start);
         query.setMaxResults(end);
         return query.getResultList();
+    }
+
+    @Override
+    public List getAllCart() {
+        String sql = "FROM cart";
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery(sql).getResultList();
+    }
+
+    @Override
+    public List getAllCartDT(CartDetails cartDetails) {
+        String sql = "FROM cartdetails WHERE idCart_CD = :key";
+        Session session = sessionFactory.openSession();
+        return session.createQuery(sql).setParameter("key", cartDetails).getResultList();
+    }
+
+    @Override
+    public int addCart(Cart cart) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(cart);
+        return cart.getIdCart();
+    }
+
+    @Override
+    public Cart findIdUserTableCart(int id) {
+        try {
+            Session session = sessionFactory.openSession();
+            String sql = "FROM cart where idUser = :key";
+            return (Cart) session.createQuery(sql).setParameter("key", id).uniqueResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public CartDetails findIdPDTAndIDUSTblCartDT(int idProductDT, int idCartCD) {
+        try {
+            Session session = sessionFactory.openSession();
+            String sql = "FROM cartdetails where idProductDetails_CD = :key AND idCart_CD = :key2";
+            return (CartDetails) session.createQuery(sql).setParameter("key", getProductDetailById(idProductDT))
+                    .setParameter("key2", findIdCart(idCartCD)).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Cart findIdCart(int idCart) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.find(Cart.class, idCart);
+    }
+
+    @Override // update quantity after buy product
+    public int updateQuantityInProductDT(CartDetails cartDetails) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(cartDetails);
+        return cartDetails.getIdCartDetails();
+    }
+
+    @Override
+    public int addCartDetails(CartDetails cartDetails) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(cartDetails);
+        return cartDetails.getIdCartDetails();
+    }
+
+    @Override // chưa dùng
+    public Long sumPriceInCartDetails(Cart cart) {
+        Session session = sessionFactory.getCurrentSession();
+        String sql = "SELECT SUM(quantity) FROM cartdetails where idCart_CD = :key";
+        return (Long) session.createQuery(sql).setParameter("key", cart).getSingleResult();
+    }
+
+    @Override
+    public int updatePriceOfCart(Cart cart) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(cart);
+        return cart.getIdCart();
     }
 }

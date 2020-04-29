@@ -15,6 +15,7 @@ public interface ManageProductDao {
     List getAllColor();
     List getAllSize();
     List getAllProducer();
+    Object findByItem(String nameItem, String typeItem);
 
     // return id of items
     int addKind(Kind kind);
@@ -28,4 +29,14 @@ public interface ManageProductDao {
     void updateProductDetailById(ProductDetails productDetails);
 
     List recentProducts(int start, int end);
+    List getAllCart();
+    List getAllCartDT(CartDetails cartDetails);
+    int addCart(Cart cart);
+    Cart findIdUserTableCart(int idUser);
+    CartDetails findIdPDTAndIDUSTblCartDT(int idProductDT, int idCartCD);
+    Cart findIdCart(int idCart);
+    int updateQuantityInProductDT(CartDetails cartDetails);
+    int addCartDetails(CartDetails cartDetails);
+    Long sumPriceInCartDetails(Cart cart);
+    int updatePriceOfCart(Cart cart);
 }

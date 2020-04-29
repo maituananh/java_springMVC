@@ -23,6 +23,14 @@ public class Producer {
         this.idProducer = idProducer;
     }
 
+    public Set<Product> getProductSet() {
+        return productSet;
+    }
+
+    public void setProductSet(Set<Product> productSet) {
+        this.productSet = productSet;
+    }
+
     public String getNameProducer() {
         return nameProducer;
     }

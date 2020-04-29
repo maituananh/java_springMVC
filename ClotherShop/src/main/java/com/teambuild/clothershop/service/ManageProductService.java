@@ -14,6 +14,7 @@ public interface ManageProductService {
     List getAllColor();
     List getAllSize();
     List getAllProducer();
+    Object findByItem(String nameItem, String typeItem);
 
     int addKind(Kind kind);
     int addColor(Color color);
@@ -26,4 +27,14 @@ public interface ManageProductService {
     void updateProductDetailById(ProductDetails productDetails);
 
     List recentProducts(int start, int end);
+
+    List getAllCart();
+    List getAllCartDT(CartDetails cartDetails);
+    int addCart(Cart cart);
+    Cart findIdUserTableCart(int idUser);
+    CartDetails findIdPDTAndIDUSTblCartDT(int idProductDT, int idCartCD);
+    int updateQuantityInProductDT(CartDetails cartDetails);
+    int addCartDetails(CartDetails cartDetails);
+    Long sumPriceInCartDetails(Cart cart);
+    int updatePriceOfCart(Cart cart);
 }

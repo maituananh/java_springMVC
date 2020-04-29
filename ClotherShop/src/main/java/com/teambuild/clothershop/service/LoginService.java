@@ -1,8 +1,8 @@
 package com.teambuild.clothershop.service;
 
 
-import java.util.List;
+import com.teambuild.clothershop.model.User;
 
 public interface LoginService {
-    List singleUserList(String userName, String password);
+    User findByUsernameAndPassword(String userName, String password);
 }

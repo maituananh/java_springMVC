@@ -98,4 +98,54 @@ public class ManageProductServiceImpl implements ManageProductService {
     public List recentProducts(int start, int end) {
         return manageProductDaoImpl.recentProducts(start, end);
     }
+
+    @Override
+    public Object findByItem(String nameItem, String typeItem) {
+        return manageProductDaoImpl.findByItem(nameItem, typeItem);
+    }
+
+    @Override
+    public List getAllCart() {
+        return manageProductDaoImpl.getAllCart();
+    }
+
+    @Override
+    public List getAllCartDT(CartDetails cartDetails) {
+        return manageProductDaoImpl.getAllCartDT(cartDetails);
+    }
+
+    @Override
+    public int addCart(Cart cart) {
+        return manageProductDaoImpl.addCart(cart);
+    }
+
+    @Override
+    public Cart findIdUserTableCart(int idUser) {
+        return manageProductDaoImpl.findIdUserTableCart(idUser);
+    }
+
+    @Override
+    public CartDetails findIdPDTAndIDUSTblCartDT(int idProductDT, int idCartCD) {
+        return manageProductDaoImpl.findIdPDTAndIDUSTblCartDT(idProductDT, idCartCD);
+    }
+
+    @Override
+    public int updateQuantityInProductDT(CartDetails cartDetails) {
+        return manageProductDaoImpl.updateQuantityInProductDT(cartDetails);
+    }
+
+    @Override
+    public int addCartDetails(CartDetails cartDetails) {
+        return manageProductDaoImpl.addCartDetails(cartDetails);
+    }
+
+    @Override
+    public Long sumPriceInCartDetails(Cart cart) {
+        return manageProductDaoImpl.sumPriceInCartDetails(cart);
+    }
+
+    @Override
+    public int updatePriceOfCart(Cart cart) {
+        return manageProductDaoImpl.updatePriceOfCart(cart);
+    }
 }

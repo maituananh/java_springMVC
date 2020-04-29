@@ -22,6 +22,14 @@ public class Role {
         this.idRole = idRole;
     }
 
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
+    }
+
     public String getNameRole() {
         return nameRole;
     }

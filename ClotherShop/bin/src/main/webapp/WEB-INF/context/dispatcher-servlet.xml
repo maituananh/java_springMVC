@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+              http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan
+            base-package="com.teambuild.clothershop.controller"/>
+    <context:component-scan
+            base-package="com.teambuild.clothershop.serviceimpl"/>
+    <context:component-scan
+            base-package="com.teambuild.clothershop.daoimpl"/>
+
+    <mvc:annotation-driven enable-matrix-variables="true"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!--  Start Interceptor  -->
+    <mvc:interceptors>
+        <bean class="com.teambuild.clothershop.interceptor.SlideInterceptor"></bean>
+    </mvc:interceptors>
+    <mvc:interceptors>
+        <bean class="com.teambuild.clothershop.interceptor.RoleInterceptor"></bean>
+    </mvc:interceptors>
+    <mvc:interceptors>
+        <bean class="com.teambuild.clothershop.interceptor.EventProductInterceptor"></bean>
+    </mvc:interceptors>
+    <mvc:interceptors>
+        <bean class="com.teambuild.clothershop.interceptor.KindProduct"></bean>
+    </mvc:interceptors>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--  End Interceptor  -->
+
+    <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+    <!--        <property name="prefix" value="/WEB-INF/views/pages/" />-->
+    <!--        <property name="suffix" value=".jsp" />-->
+    <!--    </bean>-->
+
+    <!-- mapping các template tiles -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+    </bean>
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <!-- khai báo các file định nghĩa layout -->
+                <value>/WEB-INF/context/tiles.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="classpath*:applicationContext.xml"/>
+</beans>

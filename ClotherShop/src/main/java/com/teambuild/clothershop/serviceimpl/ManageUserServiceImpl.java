@@ -20,7 +20,7 @@ public class ManageUserServiceImpl implements ManageUserService {
     }
 
     @Override
-    public List listAllUser() {
+    public List<User> listAllUser() {
         return manageUserDaoImpl.listAllUser();
     }
 

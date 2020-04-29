@@ -28,13 +28,25 @@ public class User {
     @JoinColumn(name = "idGender_User")
     private Gender gender;
 
-    @OneToOne(fetch = FetchType.EAGER) // chưa sử lý
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idVerificationCodes_User")
     private Verification verification;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // chưa sử lý
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser_Product")
     private Set<Product> product = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // chưa sử lý
+    @JoinColumn(name = "idUser")
+    private Set<Cart> carts = new HashSet<>();
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
 
     public Set<Product> getProduct() {
         return product;

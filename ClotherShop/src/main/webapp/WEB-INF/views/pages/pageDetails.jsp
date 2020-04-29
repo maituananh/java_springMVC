@@ -83,9 +83,10 @@
 											<td>${productDetails.getColor().getNameColor()}</td>
 											<td>${productDetails.getQuality()}</td>
 											<td>
-												<a href="addcart?idProductDetails=${productDetails.getIdProductDetails()}"><i
+												<a href="#" onClick="$(this).addCart('${productDetails.getIdProductDetails()}');"><i
 														style="color: green; text-decoration: none; font-size: larger"
-														class="fa fa-cart-plus"></i></a></td>
+														class="fa fa-cart-plus"></i></a>
+											</td>
 										</tr>
 									</c:forEach>
 								</table>

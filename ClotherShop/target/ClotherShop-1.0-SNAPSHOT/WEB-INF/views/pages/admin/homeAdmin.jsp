@@ -1,5 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="content">
     <div class="animated">
-        <h1>WELCOME ADMIN</h1>
+        <img src="<c:url value="/resources/images/imageAdmin.png"/>">
     </div><!-- .animated -->
 </div>

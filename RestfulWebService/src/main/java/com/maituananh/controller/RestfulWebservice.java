@@ -10,8 +10,9 @@ import java.util.List;
 
 @Controller
 public class RestfulWebservice {
-        @RequestMapping("/api")
-    public @ResponseBody List user () {
+    @RequestMapping("/api")
+    public @ResponseBody
+    List user() {
         List<User> userList = new ArrayList<User>();
         User user1 = new User();
         user1.setId(1);
@@ -38,7 +39,8 @@ public class RestfulWebservice {
     }
 
     @PostMapping("getApiUser")
-    public @ResponseBody User getUser (@RequestBody User user) {
+    public @ResponseBody
+    User getUser(@RequestBody User user) {
         System.out.println(user.getId());
         System.out.println(user.getName());
         JSONObject jsonObject = new JSONObject();
