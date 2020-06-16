@@ -6,7 +6,7 @@
     </c:if>
     
     <c:if test="${role != null}">
-        <li><a href="" id="checkOut">Checkout</a></li>
+        <li><a href="getAllCartDetailsByIdUser" id="checkOut">Checkout</a></li>
         <li><a href="" id="logout"> Logout </a></li>
     </c:if>
 </ul>

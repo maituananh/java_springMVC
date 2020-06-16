@@ -16,6 +16,11 @@
 		<put-attribute name="title" value="Home"/>
 		<put-attribute name="body" value="/WEB-INF/views/pages/home.jsp"/>
 	</definition>
+
+	<definition name="searchProduct" extends="home">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="body" value="/WEB-INF/views/pages/searchProduct.jsp"/>
+	</definition>
 	<!--  END PAGE HOME  -->
 	
 	<!--  START PAGE  -->
@@ -127,7 +132,7 @@
 	
 	<definition name="error403" extends="error">
 		<put-attribute name="title" value="403"/>
-		<put-attribute name="body" value="/WEB-INF/views/exception/error404.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/exception/error403.jsp"/>
 	</definition>
     
     <definition name="error500" extends="error">

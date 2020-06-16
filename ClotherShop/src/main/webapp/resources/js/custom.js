@@ -635,11 +635,32 @@ $(document).ready(function () {
         if ($(".edit-main").val() == "EDIT") {
             $(".main-form .edit-main").removeClass("btn-info").addClass("btn-success").val("UPDATE");
             $(".main-form .delete-main").removeClass("btn-info").addClass("btn-success").val("UPDATE");
-
             $(".main-form .disabled").prop("disabled", false);
         } else {
             $(".main-form .edit-main").removeClass("btn-success").addClass("btn-info").val("EDIT");
             $(".main-form .disabled").prop("disabled", true);
+            var idProduct = $("#idProduct").val();
+            var codeVal = $("#code-main").val();
+            var nameVal = $("#name-main").val();
+            var priceVal = $("#price-main").val();
+            var describeVal = $("#describe").val();
+            var producerVal = $("#Producer").val();
+            $.ajax({
+                url: "updateProductById",
+                type: "POST",
+                data: {
+                    idProduct: idProduct,
+                    code: codeVal,
+                    name: nameVal,
+                    price: priceVal,
+                    describe: describeVal,
+                    producer: producerVal,
+                },success: function (value) {
+                    console.log("update success");
+                },error: function (e) {
+                    console.log(e);
+                }
+            });
         }
     });
 
@@ -743,7 +764,7 @@ $(document).ready(function () {
             window.location = newURL + "/login";
         } else {
             $.ajax({
-                url: "admin-addCart",
+                url: "addCart",
                 type: "POST",
                 data: {
                     idProductDetails: id,
@@ -774,20 +795,22 @@ $(document).ready(function () {
         })
     });
 
-    $("#checkOut").click(function () {
-        alert("check out");
-        $.ajax({
-            url: "getAllCartDetailsByIdUser",
-            type: "GET",
-            data: {
-                idUser: localStorage.getItem("ID_USER")
-            },
-            success: function () {
-                console.log("redirect cart");
-            },
-            error: function () {
-                console.log("checkOut Fail");
-            }
-        })
-    })
+    $(".addProduct-main").click(function () {
+
+    });
+
+    $('#search').keypress(function(event){
+        let keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13') {
+            let search = $("#search").val();
+            $.ajax({
+                type: "POST",
+                url: 'search-product',
+                data: {
+                    search: search,
+                },
+                success: function(e) {}
+            });
+        }
+    });
 })// end

@@ -82,11 +82,21 @@
 											<td>${productDetails.getSize().getNumber()}</td>
 											<td>${productDetails.getColor().getNameColor()}</td>
 											<td>${productDetails.getQuality()}</td>
-											<td>
-												<a href="#" onClick="$(this).addCart('${productDetails.getIdProductDetails()}');"><i
-														style="color: green; text-decoration: none; font-size: larger"
-														class="fa fa-cart-plus"></i></a>
-											</td>
+											<c:if test="${sessionScope.userSession != null}">
+												<td>
+													<a href="#" onClick="$(this).addCart('${productDetails.getIdProductDetails()}');"><i
+															style="color: green; text-decoration: none; font-size: larger"
+															class="fa fa-cart-plus"></i></a>
+												</td>
+											</c:if>
+
+											<c:if test="${sessionScope.userSession == null}">
+												<td>
+													<a href="login"><i
+															style="color: green; text-decoration: none; font-size: larger"
+															class="fa fa-sign-in"></i></a>
+												</td>
+											</c:if>
 										</tr>
 									</c:forEach>
 								</table>

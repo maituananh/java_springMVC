@@ -3,37 +3,79 @@
 <div class="content">
     <div class="cart-items">
         <div class="container">
-
-            <h2>My Shopping Bag</h2>
             <c:if test="${getAllCartDetailsByIdUser == null}">
                 <h1 style="text-align: center">Your Cart Is Empty</h1>
             </c:if>
 
             <c:if test="${getAllCartDetailsByIdUser != null}">
+                <h2>Your Cart</h2>
             <c:forEach items="${getAllCartDetailsByIdUser}" var="getAllCartDetailsByIdUser">
-            <script>$(document).ready(function (c) {
-                $('.close1').on('click', function (c) {
-                    $('.cart-header').fadeOut('slow', function (c) {
-                        $('.cart-header').remove();
-                    });
-                });
-            });
+            <script>
+                    function deleteItem(id) {
+                        $('#' + id).fadeOut('slow', function (c) {
+                            $('#' + id).remove();
+                        });
+                        $.ajax({
+                            url: "delete-cartdetails",
+                            type: "POST",
+                            data: {
+                                idCartDetails: id
+                            },
+                            success: function () {
+                            },
+                            error: function () {
+                            }
+                        })
+                    };
+                    function changeQuantity(price, idCartDetails) {
+                        var quantity = $("#getQuantity-" + idCartDetails).val();
+                        if (+quantity > 0) {
+                            $("#updatePrice-" + idCartDetails).text("$" + +price * +quantity + ".000");
+                            $("#quantity-" + idCartDetails).text("Quantity: " + quantity);
+                            $("#quantity-" + idCartDetails).css("font-size","11px");
+                            $.ajax({
+                                url: "updateQuantityInCartDetails",
+                                type: "POST",
+                                data: {
+                                    idCartDetails: idCartDetails,
+                                    quantity: quantity
+                                },
+                                success: function () {
+                                },
+                                error: function () {
+                                }
+                            })
+                        }
+                    };
             </script>
-            <div class="cart-header">
-                <div class="close1"></div>
+            <div class="cart-header" id="${getAllCartDetailsByIdUser.getIdCartDetails()}">
+                <div class="close1" onclick="deleteItem(${getAllCartDetailsByIdUser.getIdCartDetails()})"></div>
+
                 <div class="cart-sec simpleCart_shelfItem">
                     <div class="cart-item cyc">
                         <img src="images/p15.jpg" class="img-responsive" alt="">
                     </div>
+
                     <div class="cart-item-info">
-                        <h3><a href="#"> ${getAllCartDetailsByIdUser.getIdProductDetails_CD().getProduct().getNameProduct()} </a><span>Pickup time:</span></h3>
+                        <h3><a href="productDetails?id=${getAllCartDetailsByIdUser.getIdProductDetails_CD().getProduct().getIdProduct()}">
+                                ${getAllCartDetailsByIdUser.getIdProductDetails_CD().getProduct().getNameProduct()} </a>
+                            <span>Price: $${getAllCartDetailsByIdUser.getIdProductDetails_CD().getProduct().getPrice()}</span></h3>
                         <ul class="qty">
-                            <li><p>Min. order value:</p></li>
-                            <li><p>FREE delivery</p></li>
+                            <li><p>Color: ${getAllCartDetailsByIdUser.getIdProductDetails_CD().getColor().getNameColor()}</p></li>
+                            <li><p>Size: ${getAllCartDetailsByIdUser.getIdProductDetails_CD().getSize().getNumber()}</p></li>
+                            <li><p>Type: ${getAllCartDetailsByIdUser.getIdProductDetails_CD().getKind().getNameKind()}</p></li>
+                            <li id="quantity-${getAllCartDetailsByIdUser.getIdCartDetails()}"><p>Quantity: ${getAllCartDetailsByIdUser.getQuantity()}</p></li>
                         </ul>
                         <div class="delivery">
-                            <p>Service Charges : $10.00</p>
-                            <span>Delivered in 1-1:30 hours</span>
+                            <p id="updatePrice-${getAllCartDetailsByIdUser.getIdCartDetails()}">
+                                $${getAllCartDetailsByIdUser.getQuantity() * getAllCartDetailsByIdUser.getIdProductDetails_CD().getProduct().getPrice()}</p>
+
+                            <span><input id="getQuantity-${getAllCartDetailsByIdUser.getIdCartDetails()}" type="number"
+                                         min="1"
+                                         max="10"
+                                         onclick="changeQuantity(${getAllCartDetailsByIdUser.getIdProductDetails_CD().getProduct().getPrice()},
+                                             ${getAllCartDetailsByIdUser.getIdCartDetails()})"
+                                         value="${getAllCartDetailsByIdUser.getQuantity()}"></span>
                             <div class="clearfix"></div>
                         </div>
                     </div>

@@ -49,11 +49,6 @@ public class ManageUserController {
 
     @PostMapping("admin-updateProfile")
     public RedirectView updateProfileAdmin(@ModelAttribute User user) {
-        System.out.println("userName = " + user.getUserName());
-        System.out.println("getName = " + user.getName());
-        System.out.println("getEmail = " + user.getEmail());
-        System.out.println("getPassword = " + user.getPassword());
-        System.out.println("getAge = " + user.getAge());
         return new RedirectView("admin-listAllUser");
     }
 }

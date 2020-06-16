@@ -35,6 +35,11 @@ public class ManageProductServiceImpl implements ManageProductService {
     }
 
     @Override
+    public int updateProductById(Product product) {
+        return manageProductDaoImpl.updateProductById(product);
+    }
+
+    @Override
     public List getAllKind() {
         return manageProductDaoImpl.getAllKind();
     }
@@ -110,8 +115,8 @@ public class ManageProductServiceImpl implements ManageProductService {
     }
 
     @Override
-    public List getAllCartDT(CartDetails cartDetails) {
-        return manageProductDaoImpl.getAllCartDT(cartDetails);
+    public List getAllCartDT(Cart cart) {
+        return manageProductDaoImpl.getAllCartDT(cart);
     }
 
     @Override
@@ -147,5 +152,20 @@ public class ManageProductServiceImpl implements ManageProductService {
     @Override
     public int updatePriceOfCart(Cart cart) {
         return manageProductDaoImpl.updatePriceOfCart(cart);
+    }
+
+    @Override
+    public int deleteCartDetails(int idCartDetails) {
+        return manageProductDaoImpl.deleteCartDetails(idCartDetails);
+    }
+
+    @Override
+    public int updateQuantityInCartDetails(int idCartDetails, int quantity) {
+        return manageProductDaoImpl.updateQuantityInCartDetails(idCartDetails, quantity);
+    }
+
+    @Override
+    public List<Product> searchProduct(String nameProduct) {
+        return manageProductDaoImpl.searchProduct(nameProduct);
     }
 }

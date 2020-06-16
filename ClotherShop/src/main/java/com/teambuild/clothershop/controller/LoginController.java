@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @SessionAttributes({"userSession", "role"})
@@ -40,7 +42,8 @@ public class LoginController {
 
     @GetMapping("logout")
     @ResponseBody
-    public String logout(HttpSession httpSession) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession httpSession = request.getSession();
         httpSession.invalidate();
         return "true";
     }

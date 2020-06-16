@@ -9,6 +9,7 @@ public interface ManageProductService {
     List getAllProduct();
     Product selectProductById(int id);
     void insertProduct(Product product);
+    int updateProductById(Product product);
     // get all of table kind, color, size
     List getAllKind();
     List getAllColor();
@@ -29,7 +30,7 @@ public interface ManageProductService {
     List recentProducts(int start, int end);
 
     List getAllCart();
-    List getAllCartDT(CartDetails cartDetails);
+    List getAllCartDT(Cart cart);
     int addCart(Cart cart);
     Cart findIdUserTableCart(int idUser);
     CartDetails findIdPDTAndIDUSTblCartDT(int idProductDT, int idCartCD);
@@ -37,4 +38,7 @@ public interface ManageProductService {
     int addCartDetails(CartDetails cartDetails);
     Long sumPriceInCartDetails(Cart cart);
     int updatePriceOfCart(Cart cart);
+    int deleteCartDetails(int idCartDetails);
+    int updateQuantityInCartDetails(int idCartDetails, int quantity);
+    List<Product> searchProduct(String nameProduct);
 }

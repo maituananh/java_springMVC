@@ -39,8 +39,8 @@
                         <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
                     </ul> <!-- cd-header-buttons -->
                     <div id="cd-search" class="cd-search">
-                        <form action="#" method="post">
-                            <input name="Search" type="search" placeholder="Search...">
+                        <form id="searchHome" action="search-product" method="post" accept-charset="UTF-8">
+                            <input id="search" name="search" type="search" placeholder="Search...">
                         </form>
                     </div>
                 </div>
@@ -48,9 +48,6 @@
                     <div class="cart box_1">
                         <a href="checkout.html">
                             <h3>
-                                <div class="total">
-                                    (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>${getAllCart.size()})
-                                </div>
                                 <img src="<c:url value="/resources/images/bag.png"/>" alt=""/>
                             </h3>
                         </a>

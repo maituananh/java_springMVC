@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -49,6 +50,13 @@ public class ManageProductDaoImpl implements ManageProductDao {
     public void insertProduct(Product product) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(product);
+    }
+
+    @Override
+    public int updateProductById(Product product) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(product);
+        return product.getIdProduct();
     }
 
     @Override
@@ -171,10 +179,10 @@ public class ManageProductDaoImpl implements ManageProductDao {
     }
 
     @Override
-    public List getAllCartDT(CartDetails cartDetails) {
+    public List getAllCartDT(Cart cart) {
         String sql = "FROM cartdetails WHERE idCart_CD = :key";
         Session session = sessionFactory.openSession();
-        return session.createQuery(sql).setParameter("key", cartDetails).getResultList();
+        return session.createQuery(sql).setParameter("key", cart).getResultList();
     }
 
     @Override
@@ -239,5 +247,34 @@ public class ManageProductDaoImpl implements ManageProductDao {
         Session session = sessionFactory.getCurrentSession();
         session.update(cart);
         return cart.getIdCart();
+    }
+
+    @Override
+    public int deleteCartDetails(int idCartDetails) {
+        Session session = sessionFactory.getCurrentSession();
+        CartDetails ent = session.load(CartDetails.class, idCartDetails);
+        session.delete(ent);
+        return ent.getIdCartDetails();
+    }
+
+    @Override
+    public int updateQuantityInCartDetails(int idCartDetails, int quantity) {
+        Session session = sessionFactory.getCurrentSession();
+        CartDetails ent = session.load(CartDetails.class, idCartDetails);
+        ent.setQuantity(quantity);
+        session.update(ent);
+        return ent.getIdCartDetails();
+    }
+
+    @Override
+    public List<Product> searchProduct(String nameProduct) {
+        try {
+            Session session = sessionFactory.openSession();
+            String sql = "FROM product where nameProduct like concat('%',:key,'%') or nameProduct like concat(:key,'%')"
+                    + " or nameProduct like concat('%',:key) or nameProduct like :key";
+            return session.createQuery(sql).setParameter("key", nameProduct).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

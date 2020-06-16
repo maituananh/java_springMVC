@@ -2,22 +2,26 @@ package com.teambuild.clothershop.controller;
 
 import com.teambuild.clothershop.model.Product;
 import com.teambuild.clothershop.serviceimpl.ManageProductServiceImpl;
+import com.teambuild.clothershop.utils.GetTimeAndDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class HomeController {
     @Autowired
     ManageProductServiceImpl manageProductServiceImpl;
 
-    private int getSizeRealOfProduct () {
+    private int getSizeRealOfProduct() {
         return manageProductServiceImpl.getAllProduct().size();
     }
 
@@ -27,6 +31,8 @@ public class HomeController {
         modelMap.addAttribute("listProduct", productList);
         float sizeOfProduct = (float) Math.ceil(getSizeRealOfProduct() / 8.0f);
         modelMap.addAttribute("sizeOfProduct", (int) sizeOfProduct);
+        List<Integer> idProductNew = GetTimeAndDay.compareDate(productList);
+        modelMap.addAttribute("idProductNew", idProductNew);
         return "pageHome";
     }
 

@@ -331,8 +331,9 @@ public class ManageProductController {
     // delete product
     @PostMapping("deleteProductByID")
     @ResponseBody
-    public void deleteProduct(@RequestParam String id) {
+    public String deleteProduct(@RequestParam String id) {
         manageProductServiceImpl.deleteProduct(Integer.parseInt(id.trim()));
+        return "true";
     }
 
     // delete product detail
@@ -340,6 +341,23 @@ public class ManageProductController {
     @ResponseBody
     public void deleteProductDetail(@RequestParam String id) {
         manageProductServiceImpl.deleteProductDetail(Integer.parseInt(id.trim()));
+    }
+
+    // update thông tin chính của product
+    @PostMapping("updateProductById")
+    @ResponseBody
+    public String updateProduct(@RequestParam String idProduct, @RequestParam String code, @RequestParam String name,
+                              @RequestParam String price, @RequestParam String describe, @RequestParam String producer) {
+        Product product = manageProductServiceImpl.selectProductById(Integer.parseInt(idProduct.trim()));
+        product.setCodesProduct(code);
+        product.setNameProduct(name);
+        product.setPrice(Double.parseDouble(price));
+        product.setDescribeProduct(describe);
+        Producer updateProducer = new Producer();
+        updateProducer.setIdProducer(Integer.parseInt(producer.trim()));
+        product.setProducer(updateProducer);
+        int id = manageProductServiceImpl.updateProductById(product);
+        return String.valueOf(id);
     }
 
     // lấy chi tiết sản phẩm
@@ -353,6 +371,12 @@ public class ManageProductController {
     public String adminDetailProduct(ModelMap modelMap, @RequestBody @RequestParam int id) {
         modelMap.addAttribute("infoProductDetails", detailsProduct(id));
         return "editProductAdmin";
+    }
+
+    @PostMapping("delete-cartdetails")
+    public String deleteCartDetails(@RequestParam String idCartDetails) {
+        manageProductServiceImpl.deleteCartDetails(Integer.parseInt(idCartDetails.trim()));
+        return "true";
     }
 
     private Product detailsProduct(int id) {
@@ -389,25 +413,18 @@ public class ManageProductController {
     }
 
     @GetMapping("getAllCartDetailsByIdUser")
-    public String getAllCartDetailsByIdUser(ModelMap modelMap, String idUser) {
+    public String getAllCartDetailsByIdUser(ModelMap modelMap, HttpSession session) {
         List<CartDetails> cartDetailsList = null;
-        if (idUser != null) {
-            System.out.println("idUser: " + idUser);
-            User user = manageUserServiceImpl.findID(Integer.parseInt(idUser.trim()));
-//        User user = (User)session.getAttribute("userSession");
+        User user = (User)session.getAttribute("userSession");
+        if (user != null) {
             Cart cart = manageProductServiceImpl.findIdUserTableCart(user.getIdUser());
-            System.out.println("cart " + cart.getIdCart());
-            CartDetails cartDetails = (CartDetails) cart.getCartDetails();
-            cartDetailsList = manageProductServiceImpl.getAllCartDT(cartDetails);
-            for (int i = 0; i < cartDetailsList.size(); i++) {
-                System.out.println(cartDetailsList.get(i).getIdCartDetails());
-            }
+            cartDetailsList = manageProductServiceImpl.getAllCartDT(cart);
         }
         modelMap.addAttribute("getAllCartDetailsByIdUser", cartDetailsList);
         return "checkOut";
     }
 
-    @PostMapping("admin-addCart")
+    @PostMapping("addCart")
     @ResponseBody
     public String addCart(@RequestParam String idProductDetails, @RequestParam String idUser) {
         if (idProductDetails.isEmpty() || idUser.isEmpty()) {
@@ -417,7 +434,6 @@ public class ManageProductController {
         int parseInt_IdProductDetails = Integer.parseInt(idProductDetails.trim());
         ProductDetails productDetails = manageProductServiceImpl.getProductDetailById(parseInt_IdProductDetails);
         Cart idUserInTbCart = manageProductServiceImpl.findIdUserTableCart(parseInt_IdUser);
-        System.out.println("id cart = " + idUserInTbCart.getIdCart());
         if (idUserInTbCart == null) { // if user have not cart -> new cart
             Cart cart = new Cart();
             Set<CartDetails> cartDetailsSet = new HashSet();
@@ -442,8 +458,6 @@ public class ManageProductController {
                 CartDetails cartDetails = checkIdProductDetails;
                 cartDetails.setQuantity(checkIdProductDetails.getQuantity() + 1);
                 manageProductServiceImpl.updateQuantityInProductDT(cartDetails);
-                idUserInTbCart.setTotalPrice(getTotalPriceInCDT(cartDetails));
-//                return String.valueOf(manageProductServiceImpl.updatePriceOfCart(idUserInTbCart));
             } else { // insert new product DT
                 CartDetails cartDetails = new CartDetails();
                 cartDetails.setIdCart_CD(idUserInTbCart);
@@ -451,18 +465,24 @@ public class ManageProductController {
                 cartDetails.setQuantity(1);
                 cartDetails.setIdProductDetails_CD(productDetails);
                 manageProductServiceImpl.addCartDetails(cartDetails);
-                idUserInTbCart.setTotalPrice(getTotalPriceInCDT(cartDetails));
             }
             return String.valueOf(manageProductServiceImpl.updatePriceOfCart(idUserInTbCart)); // đang lỗi cập nhập tổng tiền
         }
     }
 
-    private Double getTotalPriceInCDT(CartDetails cartDetails) {
-        List <CartDetails> cartDetailsList = manageProductServiceImpl.getAllCartDT(cartDetails);
-        Double total = 0.0;
-        for (int i = 0; i < cartDetailsList.size(); i++) {
-            total += cartDetailsList.get(i).getQuantity() * cartDetailsList.get(i).getPrice();
-        }
-        return total;
+    @PostMapping("updateQuantityInCartDetails")
+    public String updateQuantityInCartDetails(@RequestParam String quantity, @RequestParam String idCartDetails) {
+        int idCartDetailsPI = Integer.parseInt(idCartDetails);
+        int quantityPI = Integer.parseInt(quantity);
+        return String.valueOf(manageProductServiceImpl.updateQuantityInCartDetails(idCartDetailsPI, quantityPI));
+    }
+
+    @PostMapping("search-product")
+    public String searchProduct(ModelMap modelMap, @RequestParam String search) {
+        List<Product> productList = manageProductServiceImpl.searchProduct(search);
+        modelMap.addAttribute("listProduct", productList);
+        List<Integer> idProductNew = GetTimeAndDay.compareDate(productList);
+        modelMap.addAttribute("idProductNew", idProductNew);
+        return "searchProduct";
     }
 }
