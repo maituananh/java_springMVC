@@ -20,7 +20,7 @@
         <common.dbcp>1.4</common.dbcp>
         <mysql>8.0.16</mysql>
         <spring.jdbc>5.1.5.RELEASE</spring.jdbc>
-        <hibernate.core>5.4.2.Final</hibernate.core>
+        <hibernate.core>5.4.24.Final</hibernate.core>
     </properties>
 
     <dependencies>
